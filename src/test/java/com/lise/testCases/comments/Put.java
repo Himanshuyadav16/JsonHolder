@@ -91,11 +91,11 @@ public class Put extends BaseClass {
                 "    \"body\": \"" + commentPutPostBody + "\"\n" +
                 "  }";
         System.out.println(commentPutBody);
-        Response commentPutResponse = UpdateComments(commentPutBody,1);
+        Response commentPutResponse = UpdateComment(commentPutBody,1);
         System.out.println(commentPutResponse.asString());
     }
 //Update  Comments Method
-public Response UpdateComments(String body,int id){
+public Response UpdateComment(String body,int id){
  Response response=given()
          .contentType(ContentType.JSON)
          .body(body)
