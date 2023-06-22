@@ -15,7 +15,7 @@ import static org.hamcrest.Matchers.notNullValue;
 
 public class Delete extends BaseClass {
     @Test
-    public void deletePostTest() {
+    public void deletePostById() {
         Faker faker = new Faker();
         String userName = faker.name().name();
         String userEmail = faker.internet().emailAddress();
@@ -23,7 +23,7 @@ public class Delete extends BaseClass {
                 "    \"name\": \"" + userName + "\",\n" +
                 "    \"email\": \"" + userEmail + "\"\n" +
                 "  }";
-        Response userResponse = createUsers(userBody);
+        Response userResponse = createUser(userBody);
 
         assertThat(userResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
 
@@ -53,13 +53,13 @@ public class Delete extends BaseClass {
 
         int postId = postData.getInt("id");
 
-        Response  postDeleteResponse=deletePost(postId);
+        Response  postDeleteResponse=deletePostById(postId);
         assertThat(postDeleteResponse.getStatusCode(),is(HttpStatus.SC_OK));
-        Response userDeleteResponse=deletePost(userId);
+        Response userDeleteResponse=deletePostById(userId);
         assertThat(userDeleteResponse.getStatusCode(),is(HttpStatus.SC_OK));
     }
-//Delete Post Method
-    public Response deletePost(int id){
+//Delete Post By Id
+    public Response deletePostById(int id){
         Response response=given()
                 .request(Method.DELETE,"/posts/"+id);
         return response;

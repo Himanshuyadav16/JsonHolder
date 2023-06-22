@@ -16,7 +16,7 @@ import static org.hamcrest.Matchers.notNullValue;
 
 public class Patch extends BaseClass {
     @Test
-    public void patchTest() {
+    public void patchPostById() {
         Faker faker = new Faker();
         String userName = faker.name().name();
         String userEmail = faker.internet().emailAddress();
@@ -24,7 +24,7 @@ public class Patch extends BaseClass {
                 "    \"name\": \"" + userName + "\",\n" +
                 "    \"email\": \"" + userEmail + "\"\n" +
                 "  }";
-        Response userResponse = createUsers(userBody);
+        Response userResponse = createUser(userBody);
 
         assertThat(userResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
 
@@ -60,7 +60,7 @@ public class Patch extends BaseClass {
                 "    \"body\": \"" + pacthPostsBody + "\"\n" +
                 "  }";
 
-        Response patchResponse = patchMethod(patchBody, postId);
+        Response patchResponse = patchPostById(patchBody, postId);
         assertThat(patchResponse.getStatusCode(), is(HttpStatus.SC_OK));
 
         JSONObject jsonPatch = new JSONObject(patchResponse.asString());
@@ -70,8 +70,8 @@ public class Patch extends BaseClass {
         assertThat(jsonPatch.getString("body"), is(pacthPostsBody));
     }
 
-    //Post patch Method
-    public Response patchMethod(String body, int id) {
+    // patch A Posts
+    public Response patchPostById(String body, int id) {
         Response response = given()
                 .contentType(ContentType.JSON)
                 .body(body)
