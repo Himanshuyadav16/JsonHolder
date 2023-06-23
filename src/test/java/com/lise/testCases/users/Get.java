@@ -3,6 +3,7 @@ package com.lise.testCases.users;
 import com.lise.BaseClass;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
+import org.apache.http.HttpStatus;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.testng.annotations.Test;
@@ -117,6 +118,24 @@ public class Get extends BaseClass {
         assertThat(jsonObjectData.getBoolean("completed"), is(false));
     }
 
+    @Test
+    public void getUserByTodoId(){
+        int id=1;
+        Response response=getUserByTodosId(id);
+
+        assertThat(response.getStatusCode(),is(HttpStatus.SC_OK));
+
+        JSONArray jsonArray=new JSONArray(response.asString());
+
+        JSONObject jsonObject=jsonArray.getJSONObject(0);
+
+        assertThat(jsonObject.getInt("albumId"),is(1));
+        assertThat(jsonObject.getInt("id"),is(1));
+        assertThat(jsonObject.getString("title"),is("accusamus beatae ad facilis cum similique qui sunt"));
+        assertThat(jsonObject.getString("url"),is("https://via.placeholder.com/600/92c952"));
+        assertThat(jsonObject.getString("thumbnailUrl"),is("https://via.placeholder.com/150/92c952"));
+    }
+
     //Get All Users
     public Response getAllUser() {
         Response response = given()
@@ -149,6 +168,12 @@ public class Get extends BaseClass {
     public Response getTodosByUserId(int id) {
         Response response = given()
                 .request(Method.GET, "/users/" + id + "/todos");
+        return response;
+    }
+    //Get Users by users Id
+    public Response getUserByTodosId(int id){
+        Response response=given()
+                .request(Method.GET,"/users/"+id+"/photos");
         return response;
     }
 

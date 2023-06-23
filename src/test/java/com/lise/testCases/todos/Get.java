@@ -92,8 +92,25 @@ public class Get extends BaseClass {
         assertThat(jsonObject.getInt("id"),is(1));
         assertThat(jsonObject.getString("title"),is("quidem molestiae enim"));
     }
+    @Test
+    public void getPhotoByTodoId(){
+        int id=1;
+        Response response=getPhotoByTodosId(id);
 
- //Get All todos
+        assertThat(response.getStatusCode(),is(HttpStatus.SC_OK));
+
+        JSONArray jsonArray=new JSONArray(response.asString());
+
+        JSONObject jsonObject=jsonArray.getJSONObject(0);
+
+        assertThat(jsonObject.getInt("albumId"),is(1));
+        assertThat(jsonObject.getInt("id"),is(1));
+       assertThat(jsonObject.getString("title"),is("accusamus beatae ad facilis cum similique qui sunt"));
+       assertThat(jsonObject.getString("url"),is("https://via.placeholder.com/600/92c952"));
+       assertThat(jsonObject.getString("thumbnailUrl"),is("https://via.placeholder.com/150/92c952"));
+    }
+
+    //Get All todos
     public Response getAllTodo(){
         Response response =given()
                 .request(Method.GET,"/todos");
@@ -122,6 +139,12 @@ public class Get extends BaseClass {
     public Response getAlbumByTodosId(int id){
         Response response=given()
                 .request(Method.GET,"/todos/"+id+"/albums");
+        return response;
+    }
+    //Get Photos by todos Id
+    public Response getPhotoByTodosId(int id){
+        Response response=given()
+                .request(Method.GET,"/todos/"+id+"/photos");
         return response;
     }
 }

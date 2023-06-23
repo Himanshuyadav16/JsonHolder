@@ -102,7 +102,23 @@ public class Get extends BaseClass {
         assertThat(jsonObjectData.getBoolean("completed"), is(false));
     }
 
+    @Test
+    public void getPhotoByPostId(){
+        int id=1;
+        Response response=getPhotoByPostId(id);
 
+        assertThat(response.getStatusCode(),is(HttpStatus.SC_OK));
+
+        JSONArray jsonArray=new JSONArray(response.asString());
+
+        JSONObject jsonObject=jsonArray.getJSONObject(0);
+
+        assertThat(jsonObject.getInt("albumId"),is(1));
+        assertThat(jsonObject.getInt("id"),is(1));
+        assertThat(jsonObject.getString("title"),is("accusamus beatae ad facilis cum similique qui sunt"));
+        assertThat(jsonObject.getString("url"),is("https://via.placeholder.com/600/92c952"));
+        assertThat(jsonObject.getString("thumbnailUrl"),is("https://via.placeholder.com/150/92c952"));
+    }
     // Get  all Posts
     public Response getAllPost() {
         Response response = given().request(Method.GET, "/posts");
@@ -139,6 +155,12 @@ public class Get extends BaseClass {
     public Response getTodosByPostId(int id) {
         Response response = given()
                 .request(Method.GET, "/posts/" + id + "/todos");
+        return response;
+    }
+    //Get Photos by  PostId
+    public Response getPhotoByPostId(int id){
+        Response response=given()
+                .request(Method.GET,"/posts/"+id+"/photos");
         return response;
     }
 }
