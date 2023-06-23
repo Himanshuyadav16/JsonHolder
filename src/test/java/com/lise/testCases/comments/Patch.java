@@ -14,9 +14,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
-public class Put extends BaseClass {
+public class Patch extends BaseClass {
     @Test
-    public void updateCommentById() {
+    public void patchCommentById() {
         Faker faker = new Faker();
         String userName = faker.name().name();
         String userEmail = faker.internet().emailAddress();
@@ -80,36 +80,37 @@ public class Put extends BaseClass {
 
         int commentId = jsonObjectComment.getInt("id");
 
-        String commentPutName = faker.name().name();
-        String commentPutEmail = faker.internet().emailAddress();
-        String commentPutPostBody = "laudantium  quasi est quidem magnam voluptate ipsam eosntempora quo";
+        String commentPatchName = faker.name().name();
+        String commentPatchEmail = faker.internet().emailAddress();
+        String commentPatchPostBody = "laudantium  quasi est quidem magnam voluptate ipsam eosntempora quo";
 
-        String commentPutBody = "{\n" +
+        String commentPatchBody = "{\n" +
                 "    \"postId\": 1,\n" +
-                "    \"name\": \"" + commentPutName + "\",\n" +
-                "    \"email\": \"" + commentPutEmail + "\",\n" +
-                "    \"body\": \"" + commentPutPostBody + "\"\n" +
+                "    \"name\": \"" + commentPatchName + "\",\n" +
+                "    \"email\": \"" + commentPatchEmail + "\",\n" +
+                "    \"body\": \"" + commentPatchPostBody + "\"\n" +
                 "  }";
-        Response commentPutResponse = updateCommentbyId(commentPutBody, 1);
 
-        assertThat(commentPutResponse.getStatusCode(), is(HttpStatus.SC_OK));
+        Response commentPatchResponse = PatchCommentById(commentPatchBody, 1);
 
-        JSONObject jsonObjectUpdateComment = new JSONObject(commentPutResponse.asString());
+        assertThat(commentPatchResponse.getStatusCode(), is(HttpStatus.SC_OK));
 
-        assertThat(jsonObjectUpdateComment.getInt("id"), notNullValue());
-        assertThat(jsonObjectUpdateComment.getInt("postId"), is(1));
-        assertThat(jsonObjectUpdateComment.getString("name"), is(commentPutName));
-        assertThat(jsonObjectUpdateComment.getString("email"), is(commentPutEmail));
-        assertThat(jsonObjectUpdateComment.getString("body"), is(commentPutPostBody));
+        JSONObject jsonObjectpatchComment = new JSONObject(commentPatchResponse.asString());
+
+        assertThat(jsonObjectpatchComment.getInt("id"), notNullValue());
+        assertThat(jsonObjectpatchComment.getInt("postId"), is(1));
+        assertThat(jsonObjectpatchComment.getString("name"), is(commentPatchName));
+        assertThat(jsonObjectpatchComment.getString("email"), is(commentPatchEmail));
+        assertThat(jsonObjectpatchComment.getString("body"), is(commentPatchPostBody));
     }
 
-    //Update  Comments Method
-    public Response updateCommentbyId(String body, int id) {
+    //patch  A Comments
+    public Response PatchCommentById(String body, int id) {
         Response response = given()
                 .contentType(ContentType.JSON)
                 .body(body)
                 .when()
-                .request(Method.PUT, "/comments/" + id);
+                .request(Method.PATCH, "/comments/" + id);
         return response;
     }
 }

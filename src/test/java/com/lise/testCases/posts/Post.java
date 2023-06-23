@@ -14,7 +14,7 @@ import static org.hamcrest.Matchers.notNullValue;
 
 public class Post extends BaseClass {
     @Test
-    public void createPostTest() {
+    public void createPost() {
         Faker faker = new Faker();
         String userName = faker.name().name();
         String userEmail = faker.internet().emailAddress();
@@ -22,7 +22,7 @@ public class Post extends BaseClass {
                 "    \"name\": \"" + userName + "\",\n" +
                 "    \"email\": \"" + userEmail + "\"\n" +
                 "  }";
-        Response userResponse = createUsers(userBody);
+        Response userResponse = createUser(userBody);
 
         assertThat(userResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
 

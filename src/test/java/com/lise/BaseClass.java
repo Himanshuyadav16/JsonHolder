@@ -15,7 +15,8 @@ public class BaseClass {
     public void BeforeSuiteTest() {
         RestAssured.baseURI = ApplicationProperties.INSTANCE.getUrl();
     }
-    // Create posts Method
+
+    // Create  Posts
     public Response createPost(String body) {
         Response response = given()
                 .contentType(ContentType.JSON)
@@ -25,16 +26,17 @@ public class BaseClass {
         return response;
     }
 
-    //User Post Method
-    public Response createUsers(String userBody) {
+    //  Create User
+    public Response createUser(String userBody) {
         Response response = given()
                 .contentType(ContentType.JSON)
                 .body(userBody)
+                .when()
                 .request(Method.POST, "/users");
         return response;
     }
-    // Comments Post Method
-    public Response commentPost(String body) {
+    // Comments A Post Method
+    public Response createComment(String body) {
         Response response = given()
                 .contentType(ContentType.JSON)
                 .body(body)

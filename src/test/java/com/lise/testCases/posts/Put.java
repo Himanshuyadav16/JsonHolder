@@ -17,7 +17,7 @@ import static org.hamcrest.Matchers.notNullValue;
 public class Put extends BaseClass {
 
     @Test
-    public void updateMethodTest() {
+    public void updatePostById() {
         Faker faker = new Faker();
         String userName = faker.name().name();
         String userEmail = faker.internet().emailAddress();
@@ -25,7 +25,7 @@ public class Put extends BaseClass {
                 "    \"name\": \"" + userName + "\",\n" +
                 "    \"email\": \"" + userEmail + "\"\n" +
                 "  }";
-        Response userResponse = createUsers(userBody);
+        Response userResponse = createUser(userBody);
 
         assertThat(userResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
 
@@ -63,7 +63,7 @@ public class Put extends BaseClass {
                 "    \"body\": \"" + putPostsBody + "\"\n" +
                 "  }";
 
-        Response putResponse = updateMethod(putBody, postId);
+        Response putResponse = updatePostById(putBody, postId);
         assertThat(putResponse.getStatusCode(), is(HttpStatus.SC_OK));
 
         JSONObject jsonPut = new JSONObject(putResponse.asString());
@@ -74,7 +74,7 @@ public class Put extends BaseClass {
     }
 
     //Post Update Method
-    public Response updateMethod(String body, int id) {
+    public Response updatePostById(String body, int id) {
         Response response = given()
                 .contentType(ContentType.JSON)
                 .body(body)

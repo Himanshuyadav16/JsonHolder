@@ -16,7 +16,7 @@ import static org.hamcrest.Matchers.notNullValue;
 
 public class Post extends BaseClass {
     @Test
-    public void commentPostTest() {
+    public void createComments() {
         Faker faker = new Faker();
         String userName = faker.name().name();
         String userEmail = faker.internet().emailAddress();
@@ -24,7 +24,7 @@ public class Post extends BaseClass {
                 "    \"name\": \"" + userName + "\",\n" +
                 "    \"email\": \"" + userEmail + "\"\n" +
                 "  }";
-        Response userResponse = createUsers(userBody);
+        Response userResponse = createUser(userBody);
 
         assertThat(userResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
 
@@ -66,7 +66,7 @@ public class Post extends BaseClass {
                 "    \"body\": \"" + commentPostBody + "\"\n" +
                 "  }";
 
-        Response commentResponse = commentPost(commentBody);
+        Response commentResponse = createComment(commentBody);
 
         assertThat(commentResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
 
@@ -78,6 +78,4 @@ public class Post extends BaseClass {
         assertThat(jsonObjectComment.getString("email"), is(commentEmail));
         assertThat(jsonObjectComment.getString("body"), is(commentPostBody));
     }
-
-
 }
