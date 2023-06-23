@@ -126,6 +126,22 @@ public class Get extends BaseClass {
         assertThat(jsonObject.getString("thumbnailUrl"), is("https://via.placeholder.com/150/92c952"));
     }
 
+    @Test
+    public void getAllAlbumByUserId() {
+        int id=1;
+        Response response = getAllAlbumByUserId(id);
+
+        assertThat(response.getStatusCode(), is(HttpStatus.SC_OK));
+
+        JSONArray jsonArray = new JSONArray(response.asString());
+
+        JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+        assertThat(jsonObject.getInt("id"), is(1));
+        assertThat(jsonObject.getInt("userId"), is(1));
+        assertThat(jsonObject.getString("title"), is("quidem molestiae enim"));
+    }
+
     //Get All Albums
     public Response getAllAlbum() {
         Response response = given()
@@ -140,7 +156,7 @@ public class Get extends BaseClass {
         return response;
     }
 
-    //Get Album By PostId
+    //Get All Album By PostId
     public Response getAllAlbumByPostId(int id) {
         Response response = given()
                 .param("postId", id)
@@ -149,7 +165,7 @@ public class Get extends BaseClass {
         return response;
     }
 
-    //Get Posts by AlbumId
+    //Get All Posts by AlbumId
     public Response getAllPostsByAlbumId(int id) {
         Response response = given()
                 .request(Method.GET, "/albums/" + id + "/posts");
@@ -176,5 +192,12 @@ public class Get extends BaseClass {
                 .request(Method.GET, "/albums/" + id + "/photos");
         return response;
     }
-
+    //Get All Albums by User Id
+    public Response getAllAlbumByUserId(int id) {
+        Response response = given()
+                .param("userId", id)
+                .when()
+                .request(Method.GET, "/albums");
+        return response;
+    }
 }

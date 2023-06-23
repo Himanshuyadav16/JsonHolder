@@ -74,7 +74,7 @@ public class Get extends BaseClass {
     }
 
     @Test
-    public void getTodosByCommentId() {
+    public void getAllTodosByCommentId() {
         int id = 1;
         Response response = getTodosByCommentId(id);
 
@@ -88,7 +88,7 @@ public class Get extends BaseClass {
         assertThat(jsonObjectData.getBoolean("completed"), is(false));
     }
     @Test
-    public void getPhotoByCommentsId(){
+    public void getAllPhotoByCommentsId(){
         int id=1;
         Response response=getPhotoByCommentId(id);
 
@@ -105,7 +105,7 @@ public class Get extends BaseClass {
         assertThat(jsonObject.getString("thumbnailUrl"),is("https://via.placeholder.com/150/92c952"));
     }
 
-    //Get Comments
+    //Get All Comments
     public Response getAllComment() {
         Response response = given()
                 .request(Method.GET, "/comments");
@@ -128,20 +128,20 @@ public class Get extends BaseClass {
         return response;
     }
 
-    //Get Albums By CommentId
+    //Get All Albums By CommentId
     public Response getAlbumByCommentId(int id){
         Response response=given()
                 .request(Method.GET,"/comments/"+id+"/albums");
         return response;
     }
-    //Get todos By CommentId
+    //Get All todos By CommentId
     public Response getTodosByCommentId(int id) {
         Response response = given()
                 .request(Method.GET, "/comments/" + id + "/todos");
         return response;
     }
 
-    //Get Photos by comments Id
+    //Get  All Photos by comments Id
     public Response getPhotoByCommentId(int id){
         Response response=given()
                 .request(Method.GET,"/comments/"+id+"/photos");

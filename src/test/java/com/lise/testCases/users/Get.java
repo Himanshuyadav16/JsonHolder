@@ -77,7 +77,7 @@ public class Get extends BaseClass {
     }
 
     @Test
-    public void getPostByUserId() {
+    public void getAllPostByUserId() {
         int id = 1;
         Response response = getPostByUserId(id);
 
@@ -92,7 +92,7 @@ public class Get extends BaseClass {
     }
 
     @Test
-    public void getAlbumByUserId() {
+    public void getAllAlbumByUserId() {
         int id = 1;
         Response response = getAlbumByUserId(id);
 
@@ -105,7 +105,7 @@ public class Get extends BaseClass {
     }
 
     @Test
-    public void getTodosByUserId() {
+    public void getAllTodosByUserId() {
         int id = 1;
         Response response = getTodosByUserId(id);
 
@@ -119,9 +119,9 @@ public class Get extends BaseClass {
     }
 
     @Test
-    public void getUserByTodoId(){
+    public void getAllPhotoByUserId(){
         int id=1;
-        Response response=getUserByTodosId(id);
+        Response response=getPhotoByUserId(id);
 
         assertThat(response.getStatusCode(),is(HttpStatus.SC_OK));
 
@@ -150,31 +150,30 @@ public class Get extends BaseClass {
         return response;
     }
 
-    //Get Posts by userId
+    //Get All Posts by userId
     public Response getPostByUserId(int id) {
         Response response = given()
                 .request(Method.GET, "/users/" + id + "/posts");
         return response;
     }
 
-    //Get Album By UserId
+    //Get All Album By UserId
     public Response getAlbumByUserId(int id) {
         Response response = given()
                 .request(Method.GET, "/users/" + id + "/albums");
         return response;
     }
 
-    //Get todos By UserId
+    //Get All todos By UserId
     public Response getTodosByUserId(int id) {
         Response response = given()
                 .request(Method.GET, "/users/" + id + "/todos");
         return response;
     }
-    //Get Users by users Id
-    public Response getUserByTodosId(int id){
+    //Get All photos by users Id
+    public Response getPhotoByUserId(int id){
         Response response=given()
                 .request(Method.GET,"/users/"+id+"/photos");
         return response;
     }
-
 }

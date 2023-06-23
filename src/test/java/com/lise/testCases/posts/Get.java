@@ -42,7 +42,7 @@ public class Get extends BaseClass {
     }
 
     @Test
-    public void getCommentByPostsId() {
+    public void getAllCommentByPostsId() {
         int id=1;
         Response response = getCommentByPostId(id);
 
@@ -72,7 +72,7 @@ public class Get extends BaseClass {
         assertThat(jsonObject.getString("body"), notNullValue());
     }
     @Test
-    public void getAlbumByPostId(){
+    public void getAllAlbumByPostId(){
         int id=1;
         Response response=getAlbumByPostId(id);
 
@@ -88,7 +88,7 @@ public class Get extends BaseClass {
     }
 
     @Test
-    public void getTodosByPostId() {
+    public void getAllTodosByPostId() {
         int id = 1;
         Response response = getTodosByPostId(id);
 
@@ -103,7 +103,7 @@ public class Get extends BaseClass {
     }
 
     @Test
-    public void getPhotoByPostId(){
+    public void getAllPhotoByPostId(){
         int id=1;
         Response response=getPhotoByPostId(id);
 
@@ -125,13 +125,13 @@ public class Get extends BaseClass {
         return response;
     }
 
-    // Getting a Post By Id
+    // Get a Post By Id
     public Response getPostById(int id) {
         Response response = given().request(Method.GET, "/posts/"+id);
         return response;
     }
 
-    //Get Comments By PostId
+    //Get All Comments By PostId
     public Response getCommentByPostId(int id) {
         Response response = given().request(Method.GET, "/posts/"+id+"/comments");
         return response;
@@ -145,19 +145,19 @@ public class Get extends BaseClass {
                 .request(Method.GET, "/posts");
         return response;
     }
-    //Get Albums By posts Id
+    //Get All Albums By posts Id
     public Response getAlbumByPostId(int id){
         Response response=given()
                 .request(Method.GET,"/posts/"+id+"/albums");
         return response;
     }
-    //Get todos By postId
+    //Get All todos By postId
     public Response getTodosByPostId(int id) {
         Response response = given()
                 .request(Method.GET, "/posts/" + id + "/todos");
         return response;
     }
-    //Get Photos by  PostId
+    //Get All Photos by  PostId
     public Response getPhotoByPostId(int id){
         Response response=given()
                 .request(Method.GET,"/posts/"+id+"/photos");

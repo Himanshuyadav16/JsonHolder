@@ -107,6 +107,23 @@ public class Get extends BaseClass {
         assertThat(jsonObject.getInt("id"), is(1));
         assertThat(jsonObject.getString("title"), is("quidem molestiae enim"));
     }
+    @Test
+    public void getAllPhotoByAlbumId() {
+        int id=1;
+        Response response = getAllPhotoByAlbumId(id);
+
+        assertThat(response.getStatusCode(), is(HttpStatus.SC_OK));
+
+        JSONArray jsonArray = new JSONArray(response.asString());
+
+        JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+        assertThat(jsonObject.getInt("id"), is(1));
+        assertThat(jsonObject.getInt("albumId"), is(1));
+        assertThat(jsonObject.getString("title"), is("accusamus beatae ad facilis cum similique qui sunt"));
+        assertThat(jsonObject.getString("url"), is("https://via.placeholder.com/600/92c952"));
+        assertThat(jsonObject.getString("thumbnailUrl"), is("https://via.placeholder.com/150/92c952"));
+    }
 
     // Get  all photos
     public Response getAllPhoto() {
@@ -121,31 +138,40 @@ public class Get extends BaseClass {
         return response;
     }
 
-    //Get posts By  PhotoId
+    //Get All posts By  PhotoId
     public Response getAllPostByPhotoId(int id) {
         Response response = given()
                 .request(Method.GET, "/photos/" + id + "/posts");
         return response;
     }
 
-    //Get comments By  PhotoId
+    //Get All comments By  PhotoId
     public Response getCommentsByPhotoId(int id) {
         Response response = given()
                 .request(Method.GET, "/photos/" + id + "/comments");
         return response;
     }
 
-    //Get todos By photoId
+    //Get All todos By photoId
     public Response getTodosByPhotoId(int id) {
         Response response = given()
                 .request(Method.GET, "/photos/" + id + "/todos");
         return response;
     }
 
-    //Get Albums By  PhotoId
+    //Get All Albums By  PhotoId
     public Response getAlbumByPhotoId(int id) {
         Response response = given()
                 .request(Method.GET, "/photos/" + id + "/albums");
+        return response;
+    }
+
+    //Get All Photo by Album Id
+    public Response getAllPhotoByAlbumId(int id) {
+        Response response = given()
+                .param("albumId", id)
+                .when()
+                .request(Method.GET, "/photos");
         return response;
     }
 }
