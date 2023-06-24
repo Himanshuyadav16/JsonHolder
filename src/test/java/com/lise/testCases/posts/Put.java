@@ -2,14 +2,18 @@ package com.lise.testCases.posts;
 
 import com.github.javafaker.Faker;
 import com.lise.BaseClass;
-import io.restassured.http.ContentType;
+import com.lise.models.posts.PostPostBody;
+import com.lise.models.posts.PostPostResponse;
+import com.lise.models.posts.PostPutBody;
+import com.lise.models.posts.PostPutResponse;
+import com.lise.models.users.UserPostBody;
+import com.lise.models.users.UserPostResponse;
 import io.restassured.http.Method;
-import io.restassured.response.Response;
-import org.apache.http.HttpStatus;
-import org.json.JSONObject;
+
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
@@ -19,67 +23,78 @@ public class Put extends BaseClass {
     @Test
     public void updatePostById() {
         Faker faker = new Faker();
-        String userName = faker.name().name();
-        String userEmail = faker.internet().emailAddress();
-        String userBody = "{\n" +
-                "    \"name\": \"" + userName + "\",\n" +
-                "    \"email\": \"" + userEmail + "\"\n" +
-                "  }";
-        Response userResponse = createUser(userBody);
 
-        assertThat(userResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
+        UserPostBody userPostBody = new UserPostBody();
+        userPostBody.setName(faker.name().name());
+        userPostBody.setEmail(faker.internet().emailAddress());
 
-        JSONObject postData = new JSONObject(userResponse.asString());
+        UserPostResponse userPostResponse = createUser(userPostBody);
 
-        assertThat(postData.getString("name"), is(userName));
-        assertThat(postData.getString("email"), is(userEmail));
+        assertThat(userPostResponse.getName(), is(userPostBody.name));
+        assertThat(userPostResponse.getEmail(), is(userPostBody.email));
+        assertThat(userPostResponse.getId(), notNullValue());
 
-        int userId = postData.getInt("id");
-        String postTitle = "foo";
-        String postPostsBody = "bar";
+        int userId = userPostResponse.getId();
 
-        String postBody = "{ \"userId\": \"" + userId + "\",\n" +
-                "    \"title\": \"" + postTitle + "\",\n" +
-                "    \"body\": \"" + postPostsBody + "\"\n" +
-                "  }";
+        PostPostBody postPostBody = new PostPostBody();
 
-        Response postResponse = createPost(postBody);
+        postPostBody.setTitle("foo");
+        postPostBody.setBody("bar");
+        postPostBody.setUserId(userId);
 
-        assertThat(postResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
+        PostPostResponse postPostResponse=createPost(postPostBody);
 
-        JSONObject jsonPost = new JSONObject(postResponse.asString());
+        assertThat(postPostResponse.getTitle(),is(postPostBody.title));
+        assertThat(postPostResponse.getBody(),is(postPostBody.body));
+        assertThat(postPostResponse.getId(),notNullValue());
+        assertThat(postPostResponse.getUserId(),is(userId));
 
-        assertThat(jsonPost.getInt("userId"), is(userId));
-        assertThat(jsonPost.getInt("id"), notNullValue());
-        assertThat(jsonPost.getString("title"), is(postTitle));
-        assertThat(jsonPost.getString("body"), is(postPostsBody));
+        int postId =userPostResponse.getId();
 
-        int postId = postData.getInt("id");
-        String putTitle = "foo";
-        String putPostsBody = "bar";
+        PostPutBody postPutBody=new PostPutBody();
+        postPutBody.setTitle("foos");
+        postPutBody.setBody("bars");
+        postPutBody.setUserId(userId);
 
-        String putBody = "{ \"userId\": \"" + userId + "\",\n" +
-                "    \"title\": \"" + putTitle + "\",\n" +
-                "    \"body\": \"" + putPostsBody + "\"\n" +
-                "  }";
+        PostPutResponse postPutResponse=updatePostById(postPutBody,postId);
 
-        Response putResponse = updatePostById(putBody, postId);
-        assertThat(putResponse.getStatusCode(), is(HttpStatus.SC_OK));
+        assertThat(postPutResponse.getTitle(),is(postPutBody.title));
+        assertThat(postPutResponse.getBody(),is(postPutBody.body));
+        assertThat(postPutResponse.getUserId(),is(postPutBody.userId));
+        assertThat(postPutResponse.getId(),is(postId));
+    }
 
-        JSONObject jsonPut = new JSONObject(putResponse.asString());
-        assertThat(jsonPut.getInt("userId"), is(userId));
-        assertThat(jsonPut.getInt("id"), is(postId));
-        assertThat(jsonPut.getString("title"), is(putTitle));
-        assertThat(jsonPut.getString("body"), is(putPostsBody));
+
+    //  Create User
+    public UserPostResponse createUser(UserPostBody userPostBody) {
+        UserPostResponse response = given()
+                .contentType(JSON)
+                .body(userPostBody)
+                .when()
+                .request(Method.POST, "/users")
+                .as(UserPostResponse.class);
+        return response;
+    }
+
+    // Create  Posts
+    public PostPostResponse createPost(PostPostBody body) {
+        PostPostResponse response = given()
+                .contentType(JSON)
+                .body(body)
+                .when()
+                .request(Method.POST, "/posts")
+                .as(PostPostResponse.class);
+        return response;
     }
 
     //Post Update Method
-    public Response updatePostById(String body, int id) {
-        Response response = given()
-                .contentType(ContentType.JSON)
+    public PostPutResponse updatePostById(PostPutBody body, int id) {
+        PostPutResponse response = given()
+                .contentType(JSON)
                 .body(body)
                 .when()
-                .request(Method.PUT, "/posts/" + id);
+                .request(Method.PUT, "/posts/" + id)
+                .as(PostPutResponse.class);
         return response;
     }
 

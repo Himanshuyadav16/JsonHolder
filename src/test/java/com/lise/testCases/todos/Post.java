@@ -2,11 +2,15 @@ package com.lise.testCases.todos;
 
 import com.github.javafaker.Faker;
 import com.lise.BaseClass;
-import io.restassured.response.Response;
-import org.apache.http.HttpStatus;
-import org.json.JSONObject;
+import com.lise.models.todos.TodoPostBody;
+import com.lise.models.todos.TodoPostResponse;
+import com.lise.models.users.UserPostBody;
+import com.lise.models.users.UserPostResponse;
+import io.restassured.http.ContentType;
+import io.restassured.http.Method;
 import org.testng.annotations.Test;
 
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
@@ -15,39 +19,49 @@ public class Post extends BaseClass {
     @Test
     public void createTodo() {
         Faker faker = new Faker();
-        String userName = faker.name().name();
-        String userEmail = faker.internet().emailAddress();
-        String userBody = " {\n" +
-                "            \"name\": \"" + userName + "\",\n" +
-                "        \"email\": \"" + userEmail + "\"\n" +
-                "    }";
-        Response userResponse = createUser(userBody);
+        UserPostBody userPostBody =new UserPostBody();
+        userPostBody.setName(faker.name().name());
+        userPostBody.setEmail(faker.internet().emailAddress());
 
-        assertThat(userResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
+        UserPostResponse userPostResponse=createUser(userPostBody);
 
-        JSONObject jsonObjectUser = new JSONObject(userResponse.asString());
+        assertThat(userPostResponse.getName(),is(userPostBody.name));
+        assertThat(userPostResponse.getEmail(),is(userPostBody.email));
+        assertThat(userPostResponse.getId(),notNullValue());
 
-        assertThat(jsonObjectUser.getString("name"), is(userName));
-        assertThat(jsonObjectUser.getString("email"), is(userEmail));
-        assertThat(jsonObjectUser.getInt("id"), notNullValue());
+        int userId = userPostResponse.getId();
 
-        int userId = jsonObjectUser.getInt("id");
+        TodoPostBody todoPostBody=new TodoPostBody();
+        todoPostBody.setUserId(userId);
+        todoPostBody.setTitle("enderit");
+        todoPostBody.setCompleted(false);
 
-        String todoTitle = "enderit";
-        boolean todoCompleted =false ;
-        String todoBody = "{ \n" +
-                "    \"userId\":" + userId + ",\n" +
-                "    \"title\": \"" + todoTitle + "\",\n" +
-                "    \"completed\": \"" + todoCompleted + "\"\n" +
-                "  }";
-        Response todoResponse = createTodo(todoBody);
+        TodoPostResponse todoPostResponse=createTodo(todoPostBody);
 
-        JSONObject jsonObjectTodo = new JSONObject(todoResponse.asString());
-
-        assertThat(jsonObjectTodo.getInt("userId"), is(userId));
-        assertThat(jsonObjectTodo.getInt("id"), notNullValue());
-        assertThat(jsonObjectTodo.getString("title"), is(todoTitle));
-        assertThat(jsonObjectTodo.getBoolean("completed"), is(todoCompleted));
+        assertThat(todoPostResponse.getId(),notNullValue());
+        assertThat(todoPostResponse.getTitle(),is(todoPostBody.title));
+        assertThat(todoPostResponse.getUserId(),is(userId));
+        assertThat(todoPostResponse.isCompleted(),is(todoPostBody.completed));
     }
 
+    //  Create User
+    public UserPostResponse createUser(UserPostBody userPostBody) {
+        UserPostResponse response = given()
+                .contentType(ContentType.JSON)
+                .body(userPostBody)
+                .when()
+                .request(Method.POST, "/users")
+                .as(UserPostResponse.class);
+        return response;
+    }
+    // create Todos
+    public TodoPostResponse createTodo(TodoPostBody body) {
+        TodoPostResponse response = given()
+                .contentType(ContentType.JSON)
+                .body(body)
+                .when()
+                .request(Method.POST, "/todos")
+                .as(TodoPostResponse.class);
+        return response;
+    }
 }

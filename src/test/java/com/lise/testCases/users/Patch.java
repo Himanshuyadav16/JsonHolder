@@ -2,11 +2,9 @@ package com.lise.testCases.users;
 
 import com.github.javafaker.Faker;
 import com.lise.BaseClass;
+import com.lise.models.users.*;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
-import io.restassured.response.Response;
-import org.apache.http.HttpStatus;
-import org.json.JSONObject;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -18,68 +16,87 @@ public class Patch extends BaseClass {
     @Test
     public void patchUserById(){
         Faker faker = new Faker();
+        UserPostBody userPostBody =new UserPostBody();
+        userPostBody.setName(faker.name().name());
+        userPostBody.setEmail(faker.internet().emailAddress());
 
-        String userName = faker.name().name();
-        String userEmail = faker.internet().emailAddress();
+        UserPostResponse userPostResponse=createUser(userPostBody);
 
-        String userBody = " {\n" +
-                "            \"name\": \"" + userName + "\",\n" +
-                "        \"email\": \"" + userEmail + "\"\n" +
-                "    }";
-        Response userResponse = createUser(userBody);
-        assertThat(userResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
-
-        JSONObject jsonObjectUser = new JSONObject(userResponse.asString());
-
-        assertThat(jsonObjectUser.getString("name"), is(userName));
-        assertThat(jsonObjectUser.getString("email"), is(userEmail));
-        assertThat(jsonObjectUser.getInt("id"), notNullValue());
+        assertThat(userPostResponse.getName(),is(userPostBody.name));
+        assertThat(userPostResponse.getEmail(),is(userPostBody.email));
+        assertThat(userPostResponse.getId(),notNullValue());
 
         int userId = 1;
-        String userPatchName = faker.name().name();
-        String userPatchEmail = faker.internet().emailAddress();
 
-        String userPatchBody = " {\n" +
-                "            \"name\": \"" + userPatchName + "\",\n" +
-                "        \"email\": \"" + userPatchEmail + "\"\n" +
-                "    }";
+        UserPatchBody userPatchBody=new UserPatchBody();
+        userPatchBody.setName(faker.name().name());
+        userPatchBody.setEmail(faker.internet().emailAddress());
+        userPatchBody.setPhone("1-770-736-8031 x56442");
+        userPatchBody.setWebsite("hildegard.org");
+        userPatchBody.setUsername("Bret");
 
-        Response userPatchResponse = patchUserById(userPatchBody, userId);
+        Address address=new Address();
 
-        assertThat(userPatchResponse.getStatusCode(), is(HttpStatus.SC_OK));
+        address.setCity("Gwenborough");
+        address.setStreet("Apt. 556");
+        address.setSuite("Kulas Light");
+        address.setZipcode("92998-3874");
 
-        JSONObject jsonObjectPutUser = new JSONObject(userPatchResponse.asString());
+        Geo geo=new Geo();
 
-        assertThat(jsonObjectPutUser.getInt("id"), is(1));
-        assertThat(jsonObjectPutUser.getString("name"), is(userPatchName));
-        assertThat(jsonObjectPutUser.getString("username"), is("Bret"));
-        assertThat(jsonObjectPutUser.getString("email"), is(userPatchEmail));
-        assertThat(jsonObjectPutUser.getString("phone"), is("1-770-736-8031 x56442"));
-        assertThat(jsonObjectPutUser.getString("website"), is("hildegard.org"));
+        geo.setLat("-37.3159");
+        geo.setLng("81.1496");
 
-        JSONObject jsonObjectAddress = jsonObjectPutUser.getJSONObject("address");
+        Company company=new Company();
 
-        assertThat(jsonObjectAddress.getString("street"), is("Kulas Light"));
-        assertThat(jsonObjectAddress.getString("suite"), is("Apt. 556"));
-        assertThat(jsonObjectAddress.getString("city"), is("Gwenborough"));
-        assertThat(jsonObjectAddress.getString("zipcode"), is("92998-3874"));
+        company.setCatchPhrase("Multi-layered client-server neural-net");
+        company.setName("Romaguera-Crona");
+        company.setBs("harness real-time e-markets");
 
-        JSONObject jsonObjectGeo = jsonObjectAddress.getJSONObject("geo");
-        assertThat(jsonObjectGeo.getString("lat"), is("-37.3159"));
-        assertThat(jsonObjectGeo.getString("lng"), is("81.1496"));
+        userPatchBody.setAddress(address);
+        address.setGeo(geo);
+        userPatchBody.setCompany(company);
 
-        JSONObject jsonObjectCompany = jsonObjectPutUser.getJSONObject("company");
-        assertThat(jsonObjectCompany.getString("name"), is("Romaguera-Crona"));
-        assertThat(jsonObjectCompany.getString("catchPhrase"), is("Multi-layered client-server neural-net"));
-        assertThat(jsonObjectCompany.getString("bs"), is("harness real-time e-markets"));
+        UserPatchResponse userPatchResponse=patchUserById(userPatchBody,userId);
+
+        assertThat(userPatchResponse.getName(),is(userPatchBody.name));
+        assertThat(userPatchResponse.getEmail(),is(userPatchBody.email));
+        assertThat(userPatchResponse.getId(),notNullValue());
+        assertThat(userPatchResponse.getUsername(),is(userPatchBody.username));
+        assertThat(userPatchResponse.getPhone(),is(userPatchBody.phone));
+        assertThat(userPatchResponse.getWebsite(),is(userPatchBody.website));
+
+        assertThat(address.getCity(),is(address.city));
+        assertThat(address.getSuite(),is(address.suite));
+        assertThat(address.getStreet(),is(address.street));
+        assertThat(address.getZipcode(),is(address.zipcode));
+
+        assertThat(geo.getLat(),is(geo.lat));
+        assertThat(geo.getLng(),is(geo.lng));
+
+        assertThat(company.getName(),is(company.name));
+        assertThat(company.getCatchPhrase(),is(company.catchPhrase));
+        assertThat(company.getBs(),is(company.bs));
+
+    }
+    //  Create User
+    public UserPostResponse createUser(UserPostBody userPostBody) {
+        UserPostResponse response = given()
+                .contentType(ContentType.JSON)
+                .body(userPostBody)
+                .when()
+                .request(Method.POST, "/users")
+                .as(UserPostResponse.class);
+        return response;
     }
 //Patch User By Id
-public Response patchUserById(String body, int id) {
-    Response response = given()
+public UserPatchResponse patchUserById(UserPatchBody body, int id) {
+    UserPatchResponse response = given()
             .contentType(ContentType.JSON)
             .body(body)
             .when()
-            .request(Method.PATCH, "/users/" + id);
+            .request(Method.PATCH, "/users/" + id)
+            .as(UserPatchResponse.class);
     return response;
 }
 }
