@@ -35,12 +35,42 @@ public class BaseClass {
                 .request(Method.POST, "/users");
         return response;
     }
+
     // Comments A Post Method
     public Response createComment(String body) {
         Response response = given()
                 .contentType(ContentType.JSON)
                 .body(body)
                 .request(Method.POST, "/comments");
+        return response;
+    }
+
+    // create Todos
+    public Response createTodo(String body) {
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .body(body)
+                .when()
+                .request(Method.POST, "/todos");
+        return response;
+    }
+
+    //Create Album
+    public Response createAlbum(String body) {
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .body(body)
+                .when()
+                .request(Method.POST, "/posts");
+        return response;
+    }
+    //create Photos
+    public Response createPhoto(String body){
+        Response response=given()
+                .contentType(ContentType.JSON)
+                .body(body)
+                .when()
+                .request(Method.POST,"/photos");
         return response;
     }
 }

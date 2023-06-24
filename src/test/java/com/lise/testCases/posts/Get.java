@@ -42,7 +42,7 @@ public class Get extends BaseClass {
     }
 
     @Test
-    public void getCommentByPostsId() {
+    public void getAllCommentByPostsId() {
         int id=1;
         Response response = getCommentByPostId(id);
 
@@ -72,7 +72,7 @@ public class Get extends BaseClass {
         assertThat(jsonObject.getString("body"), notNullValue());
     }
     @Test
-    public void getAlbumByPostId(){
+    public void getAllAlbumByPostId(){
         int id=1;
         Response response=getAlbumByPostId(id);
 
@@ -88,7 +88,7 @@ public class Get extends BaseClass {
     }
 
     @Test
-    public void getTodosByPostId() {
+    public void getAllTodosByPostId() {
         int id = 1;
         Response response = getTodosByPostId(id);
 
@@ -102,20 +102,36 @@ public class Get extends BaseClass {
         assertThat(jsonObjectData.getBoolean("completed"), is(false));
     }
 
+    @Test
+    public void getAllPhotoByPostId(){
+        int id=1;
+        Response response=getPhotoByPostId(id);
 
+        assertThat(response.getStatusCode(),is(HttpStatus.SC_OK));
+
+        JSONArray jsonArray=new JSONArray(response.asString());
+
+        JSONObject jsonObject=jsonArray.getJSONObject(0);
+
+        assertThat(jsonObject.getInt("albumId"),is(1));
+        assertThat(jsonObject.getInt("id"),is(1));
+        assertThat(jsonObject.getString("title"),is("accusamus beatae ad facilis cum similique qui sunt"));
+        assertThat(jsonObject.getString("url"),is("https://via.placeholder.com/600/92c952"));
+        assertThat(jsonObject.getString("thumbnailUrl"),is("https://via.placeholder.com/150/92c952"));
+    }
     // Get  all Posts
     public Response getAllPost() {
         Response response = given().request(Method.GET, "/posts");
         return response;
     }
 
-    // Getting a Post By Id
+    // Get a Post By Id
     public Response getPostById(int id) {
         Response response = given().request(Method.GET, "/posts/"+id);
         return response;
     }
 
-    //Get Comments By PostId
+    //Get All Comments By PostId
     public Response getCommentByPostId(int id) {
         Response response = given().request(Method.GET, "/posts/"+id+"/comments");
         return response;
@@ -129,16 +145,22 @@ public class Get extends BaseClass {
                 .request(Method.GET, "/posts");
         return response;
     }
-    //Get Albums By posts Id
+    //Get All Albums By posts Id
     public Response getAlbumByPostId(int id){
         Response response=given()
                 .request(Method.GET,"/posts/"+id+"/albums");
         return response;
     }
-    //Get todos By postId
+    //Get All todos By postId
     public Response getTodosByPostId(int id) {
         Response response = given()
                 .request(Method.GET, "/posts/" + id + "/todos");
+        return response;
+    }
+    //Get All Photos by  PostId
+    public Response getPhotoByPostId(int id){
+        Response response=given()
+                .request(Method.GET,"/posts/"+id+"/photos");
         return response;
     }
 }
