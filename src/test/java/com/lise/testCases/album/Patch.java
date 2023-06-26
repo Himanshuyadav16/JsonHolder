@@ -2,11 +2,14 @@ package com.lise.testCases.album;
 
 import com.github.javafaker.Faker;
 import com.lise.BaseClass;
+import com.lise.models.albums.AlbumPatchBody;
+import com.lise.models.albums.AlbumPatchResponse;
+import com.lise.models.albums.AlbumPostBody;
+import com.lise.models.albums.AlbumPostResponse;
+import com.lise.models.users.UserPostBody;
+import com.lise.models.users.UserPostResponse;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
-import io.restassured.response.Response;
-import org.apache.http.HttpStatus;
-import org.json.JSONObject;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -19,64 +22,71 @@ public class Patch extends BaseClass {
     @Test
     public void patchAlbum() {
         Faker faker = new Faker();
-        String userName = faker.name().name();
-        String userEmail = faker.internet().emailAddress();
-        String userBody = " {\n" +
-                "            \"name\": \"" + userName + "\",\n" +
-                "        \"email\": \"" + userEmail + "\"\n" +
-                "    }";
-        Response userResponse = createUser(userBody);
+        UserPostBody userPostBody =new UserPostBody();
+        userPostBody.setName(faker.name().name());
+        userPostBody.setEmail(faker.internet().emailAddress());
 
-        assertThat(userResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
+        UserPostResponse userPostResponse=createUser(userPostBody);
 
-        JSONObject jsonObjectUser = new JSONObject(userResponse.asString());
+        assertThat(userPostResponse.getName(),is(userPostBody.name));
+        assertThat(userPostResponse.getEmail(),is(userPostBody.email));
+        assertThat(userPostResponse.getId(),notNullValue());
 
-        assertThat(jsonObjectUser.getString("name"), is(userName));
-        assertThat(jsonObjectUser.getString("email"), is(userEmail));
-        assertThat(jsonObjectUser.getInt("id"), notNullValue());
+        int userId = userPostResponse.getId();
 
-        int userId = jsonObjectUser.getInt("id");
+        AlbumPostBody albumPostBody=new AlbumPostBody();
+        albumPostBody.setTitle("quidem molestiae enim");
+        albumPostBody.setUserId(userId);
 
-        String albumTitle = "quidem molestiae enim";
-        String albumBody = " {\n" +
-                "        \"userId\": " + userId + ",\n" +
-                "        \"title\": \"" + albumTitle + "\"\n" +
-                "    }";
-
-        Response albumResponse = createAlbum(albumBody);
-
-        assertThat(albumResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
-
-        JSONObject jsonObjectAlbum = new JSONObject(albumResponse.asString());
-
-        assertThat(jsonObjectAlbum.getString("title"), is(albumTitle));
-        assertThat(jsonObjectAlbum.getInt("userId"), is(userId));
-        assertThat(jsonObjectAlbum.getInt("id"), notNullValue());
+        AlbumPostResponse albumPostResponse=createAlbum(albumPostBody);
+        assertThat(albumPostResponse.getTitle(),is(albumPostBody.title));
+        assertThat(albumPostResponse.getUserId(),is(userId));
+        assertThat(albumPostResponse.getId(),notNullValue());
 
         int albumId = 1;
-        String albumPatchTitle = "quidem moleste patched";
-        String albumPatchBody = " {\n" +
-                "        \"userId\": " + userId + ",\n" +
-                "        \"title\": \"" + albumPatchTitle + "\"\n" +
-                "    }";
 
-        Response albumPatchResponse = patchAlbum(albumPatchBody, albumId);
+        AlbumPatchBody albumPatchBody=new AlbumPatchBody();
+        albumPatchBody.setUserId(userId);
+        albumPatchBody.setTitle(albumPatchBody.title);
 
-        assertThat(albumPatchResponse.getStatusCode(), is(HttpStatus.SC_OK));
 
-        JSONObject jsonObjectPatchAlbum = new JSONObject(albumPatchResponse.asString());
+        AlbumPatchResponse albumPatchResponse = patchAlbum(albumPatchBody, albumId);
 
-        assertThat(jsonObjectPatchAlbum.getString("title"), is(albumPatchTitle));
-        assertThat(jsonObjectPatchAlbum.getInt("userId"), is(userId));
-        assertThat(jsonObjectPatchAlbum.getInt("id"), notNullValue());
+        assertThat(albumPatchResponse.getTitle(), is(albumPatchBody.title));
+        assertThat(albumPatchResponse.getUserId(), is(userId));
+        assertThat(albumPatchResponse.getId(), notNullValue());
     }
-    // Patch Album
-    public Response patchAlbum(String body, int id) {
-        Response response = given()
+
+    //  Create User
+    public UserPostResponse createUser(UserPostBody userPostBody) {
+        UserPostResponse response = given()
+                .contentType(ContentType.JSON)
+                .body(userPostBody)
+                .when()
+                .request(Method.POST, "/users")
+                .as(UserPostResponse.class);
+        return response;
+    }
+
+    //Create Album
+    public AlbumPostResponse createAlbum(AlbumPostBody body) {
+        AlbumPostResponse response = given()
                 .contentType(ContentType.JSON)
                 .body(body)
                 .when()
-                .request(Method.PATCH, "/albums/" + id);
+                .request(Method.POST, "/posts")
+                .as(AlbumPostResponse.class);
+        return response;
+    }
+
+    // Patch Album
+    public AlbumPatchResponse patchAlbum(AlbumPatchBody body, int id) {
+        AlbumPatchResponse response = given()
+                .contentType(ContentType.JSON)
+                .body(body)
+                .when()
+                .request(Method.PATCH, "/albums/" + id)
+                .as(AlbumPatchResponse.class);
         return response;
     }
 }

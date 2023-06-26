@@ -1,0 +1,2067 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <meta charset='utf-8'>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" />
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <br/>
+      <span class="top-banner-font-1">1 suite</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" title="Collapse/expand all the suites" class="collapse-all-link">
+          <img src="collapseall.gif" class="collapse-all-icon">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" panel-name="suite-All_Test_Suite" class="navigator-link">
+              <span class="suite-name border-passed">All Test Suite</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" panel-name="test-xml-All_Test_Suite" class="navigator-link ">
+                    <span>testng.xml</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="testlist-All_Test_Suite" class="navigator-link ">
+                    <span class="test-stats">1 test</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="group-All_Test_Suite" class="navigator-link ">
+                    <span>0 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="times-All_Test_Suite" class="navigator-link ">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="reporter-All_Test_Suite" class="navigator-link ">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="ignored-methods-All_Test_Suite" class="navigator-link ">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="chronological-All_Test_Suite" class="navigator-link ">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">65 methods,   65 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-All_Test_Suite" class="hide-methods passed suite-All_Test_Suite"> (hide)</a> <!-- hide-methods passed suite-All_Test_Suite -->
+                      <a href="#" panel-name="suite-All_Test_Suite" class="show-methods passed suite-All_Test_Suite"> (show)</a> <!-- show-methods passed suite-All_Test_Suite -->
+                    </span>
+                    <div class="method-list-content passed suite-All_Test_Suite">
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.album.Post" class="method navigator-link" hash-for-method="createAlbum">createAlbum</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.comments.Post" class="method navigator-link" hash-for-method="createComments">createComments</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.photos.Post" class="method navigator-link" hash-for-method="createPhoto">createPhoto</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.posts.Post" class="method navigator-link" hash-for-method="createPost">createPost</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.todos.Post" class="method navigator-link" hash-for-method="createTodo">createTodo</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.users.Post" class="method navigator-link" hash-for-method="createUser">createUser</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.album.Delete" class="method navigator-link" hash-for-method="deleteAlbumById">deleteAlbumById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.comments.Delete" class="method navigator-link" hash-for-method="deleteCommentsById">deleteCommentsById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.photos.Delete" class="method navigator-link" hash-for-method="deletePhotoById">deletePhotoById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.posts.Delete" class="method navigator-link" hash-for-method="deletePostById">deletePostById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.todos.Delete" class="method navigator-link" hash-for-method="deleteTodoById">deleteTodoById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.users.Delete" class="method navigator-link" hash-for-method="deleteUserById">deleteUserById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.comments.Get" class="method navigator-link" hash-for-method="getAlbumByCommentId">getAlbumByCommentId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.album.Get" class="method navigator-link" hash-for-method="getAlbumById">getAlbumById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.photos.Get" class="method navigator-link" hash-for-method="getAllAlbumByPhotoId">getAllAlbumByPhotoId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.posts.Get" class="method navigator-link" hash-for-method="getAllAlbumByPostId">getAllAlbumByPostId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.album.Get" class="method navigator-link" hash-for-method="getAllAlbumByPostId">getAllAlbumByPostId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.todos.Get" class="method navigator-link" hash-for-method="getAllAlbumByTodoId">getAllAlbumByTodoId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.users.Get" class="method navigator-link" hash-for-method="getAllAlbumByUserId">getAllAlbumByUserId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.album.Get" class="method navigator-link" hash-for-method="getAllAlbumByUserId">getAllAlbumByUserId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.album.Get" class="method navigator-link" hash-for-method="getAllAlbums">getAllAlbums</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.posts.Get" class="method navigator-link" hash-for-method="getAllCommentByPostsId">getAllCommentByPostsId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.comments.Get" class="method navigator-link" hash-for-method="getAllComments">getAllComments</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.album.Get" class="method navigator-link" hash-for-method="getAllCommentsByAlbumId">getAllCommentsByAlbumId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.photos.Get" class="method navigator-link" hash-for-method="getAllCommentsByPhotoId">getAllCommentsByPhotoId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.comments.Get" class="method navigator-link" hash-for-method="getAllCommentsByPostId">getAllCommentsByPostId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.todos.Get" class="method navigator-link" hash-for-method="getAllCommentsByTodoId">getAllCommentsByTodoId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.photos.Get" class="method navigator-link" hash-for-method="getAllPhotoByAlbumId">getAllPhotoByAlbumId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.album.Get" class="method navigator-link" hash-for-method="getAllPhotoByAlbumId">getAllPhotoByAlbumId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.comments.Get" class="method navigator-link" hash-for-method="getAllPhotoByCommentsId">getAllPhotoByCommentsId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.posts.Get" class="method navigator-link" hash-for-method="getAllPhotoByPostId">getAllPhotoByPostId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.todos.Get" class="method navigator-link" hash-for-method="getAllPhotoByTodoId">getAllPhotoByTodoId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.users.Get" class="method navigator-link" hash-for-method="getAllPhotoByUserId">getAllPhotoByUserId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.photos.Get" class="method navigator-link" hash-for-method="getAllPhotos">getAllPhotos</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.photos.Get" class="method navigator-link" hash-for-method="getAllPostByPhotoId">getAllPostByPhotoId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.todos.Get" class="method navigator-link" hash-for-method="getAllPostByTodoId">getAllPostByTodoId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.users.Get" class="method navigator-link" hash-for-method="getAllPostByUserId">getAllPostByUserId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.posts.Get" class="method navigator-link" hash-for-method="getAllPostByUserId">getAllPostByUserId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.posts.Get" class="method navigator-link" hash-for-method="getAllPosts">getAllPosts</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.album.Get" class="method navigator-link" hash-for-method="getAllPostsByAlbumId">getAllPostsByAlbumId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.todos.Get" class="method navigator-link" hash-for-method="getAllTodoByUserId">getAllTodoByUserId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.todos.Get" class="method navigator-link" hash-for-method="getAllTodos">getAllTodos</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.album.Get" class="method navigator-link" hash-for-method="getAllTodosByAlbumId">getAllTodosByAlbumId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.comments.Get" class="method navigator-link" hash-for-method="getAllTodosByCommentId">getAllTodosByCommentId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.photos.Get" class="method navigator-link" hash-for-method="getAllTodosByPhotoId">getAllTodosByPhotoId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.posts.Get" class="method navigator-link" hash-for-method="getAllTodosByPostId">getAllTodosByPostId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.users.Get" class="method navigator-link" hash-for-method="getAllTodosByUserId">getAllTodosByUserId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.users.Get" class="method navigator-link" hash-for-method="getAllUsers">getAllUsers</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.comments.Get" class="method navigator-link" hash-for-method="getCommentById">getCommentById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.photos.Get" class="method navigator-link" hash-for-method="getPhotoById">getPhotoById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.posts.Get" class="method navigator-link" hash-for-method="getPostById">getPostById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.todos.Get" class="method navigator-link" hash-for-method="getTodoById">getTodoById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.users.Get" class="method navigator-link" hash-for-method="getUserById">getUserById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.album.Patch" class="method navigator-link" hash-for-method="patchAlbum">patchAlbum</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.comments.Patch" class="method navigator-link" hash-for-method="patchCommentById">patchCommentById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.photos.Patch" class="method navigator-link" hash-for-method="patchPhoto">patchPhoto</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.posts.Patch" class="method navigator-link" hash-for-method="patchPostById">patchPostById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.todos.Patch" class="method navigator-link" hash-for-method="patchTodoById">patchTodoById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.users.Patch" class="method navigator-link" hash-for-method="patchUserById">patchUserById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.album.Put" class="method navigator-link" hash-for-method="updateAlbum">updateAlbum</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.comments.Put" class="method navigator-link" hash-for-method="updateCommentById">updateCommentById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.photos.Put" class="method navigator-link" hash-for-method="updatePhoto">updatePhoto</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.posts.Put" class="method navigator-link" hash-for-method="updatePostById">updatePostById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.todos.Put" class="method navigator-link" hash-for-method="updateTodoById">updateTodoById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="com.lise.testCases.users.Put" class="method navigator-link" hash-for-method="updateUserById">updateUserById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-All_Test_Suite -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-All_Test_Suite" class="panel All_Test_Suite">
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.todos.Get</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllAlbumByTodoId">
+                  </a> <!-- getAllAlbumByTodoId -->
+                  <span class="method-name">getAllAlbumByTodoId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllCommentsByTodoId">
+                  </a> <!-- getAllCommentsByTodoId -->
+                  <span class="method-name">getAllCommentsByTodoId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllPhotoByTodoId">
+                  </a> <!-- getAllPhotoByTodoId -->
+                  <span class="method-name">getAllPhotoByTodoId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllPostByTodoId">
+                  </a> <!-- getAllPostByTodoId -->
+                  <span class="method-name">getAllPostByTodoId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllTodoByUserId">
+                  </a> <!-- getAllTodoByUserId -->
+                  <span class="method-name">getAllTodoByUserId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllTodos">
+                  </a> <!-- getAllTodos -->
+                  <span class="method-name">getAllTodos</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getTodoById">
+                  </a> <!-- getTodoById -->
+                  <span class="method-name">getTodoById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.photos.Post</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="createPhoto">
+                  </a> <!-- createPhoto -->
+                  <span class="method-name">createPhoto</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.users.Post</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="createUser">
+                  </a> <!-- createUser -->
+                  <span class="method-name">createUser</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.comments.Get</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAlbumByCommentId">
+                  </a> <!-- getAlbumByCommentId -->
+                  <span class="method-name">getAlbumByCommentId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllComments">
+                  </a> <!-- getAllComments -->
+                  <span class="method-name">getAllComments</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllCommentsByPostId">
+                  </a> <!-- getAllCommentsByPostId -->
+                  <span class="method-name">getAllCommentsByPostId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllPhotoByCommentsId">
+                  </a> <!-- getAllPhotoByCommentsId -->
+                  <span class="method-name">getAllPhotoByCommentsId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllTodosByCommentId">
+                  </a> <!-- getAllTodosByCommentId -->
+                  <span class="method-name">getAllTodosByCommentId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getCommentById">
+                  </a> <!-- getCommentById -->
+                  <span class="method-name">getCommentById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.todos.Patch</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="patchTodoById">
+                  </a> <!-- patchTodoById -->
+                  <span class="method-name">patchTodoById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.todos.Post</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="createTodo">
+                  </a> <!-- createTodo -->
+                  <span class="method-name">createTodo</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.posts.Get</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllAlbumByPostId">
+                  </a> <!-- getAllAlbumByPostId -->
+                  <span class="method-name">getAllAlbumByPostId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllCommentByPostsId">
+                  </a> <!-- getAllCommentByPostsId -->
+                  <span class="method-name">getAllCommentByPostsId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllPhotoByPostId">
+                  </a> <!-- getAllPhotoByPostId -->
+                  <span class="method-name">getAllPhotoByPostId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllPostByUserId">
+                  </a> <!-- getAllPostByUserId -->
+                  <span class="method-name">getAllPostByUserId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllPosts">
+                  </a> <!-- getAllPosts -->
+                  <span class="method-name">getAllPosts</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllTodosByPostId">
+                  </a> <!-- getAllTodosByPostId -->
+                  <span class="method-name">getAllTodosByPostId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getPostById">
+                  </a> <!-- getPostById -->
+                  <span class="method-name">getPostById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.album.Post</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="createAlbum">
+                  </a> <!-- createAlbum -->
+                  <span class="method-name">createAlbum</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.photos.Get</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllAlbumByPhotoId">
+                  </a> <!-- getAllAlbumByPhotoId -->
+                  <span class="method-name">getAllAlbumByPhotoId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllCommentsByPhotoId">
+                  </a> <!-- getAllCommentsByPhotoId -->
+                  <span class="method-name">getAllCommentsByPhotoId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllPhotoByAlbumId">
+                  </a> <!-- getAllPhotoByAlbumId -->
+                  <span class="method-name">getAllPhotoByAlbumId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllPhotos">
+                  </a> <!-- getAllPhotos -->
+                  <span class="method-name">getAllPhotos</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllPostByPhotoId">
+                  </a> <!-- getAllPostByPhotoId -->
+                  <span class="method-name">getAllPostByPhotoId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllTodosByPhotoId">
+                  </a> <!-- getAllTodosByPhotoId -->
+                  <span class="method-name">getAllTodosByPhotoId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getPhotoById">
+                  </a> <!-- getPhotoById -->
+                  <span class="method-name">getPhotoById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.album.Get</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAlbumById">
+                  </a> <!-- getAlbumById -->
+                  <span class="method-name">getAlbumById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllAlbumByPostId">
+                  </a> <!-- getAllAlbumByPostId -->
+                  <span class="method-name">getAllAlbumByPostId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllAlbumByUserId">
+                  </a> <!-- getAllAlbumByUserId -->
+                  <span class="method-name">getAllAlbumByUserId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllAlbums">
+                  </a> <!-- getAllAlbums -->
+                  <span class="method-name">getAllAlbums</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllCommentsByAlbumId">
+                  </a> <!-- getAllCommentsByAlbumId -->
+                  <span class="method-name">getAllCommentsByAlbumId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllPhotoByAlbumId">
+                  </a> <!-- getAllPhotoByAlbumId -->
+                  <span class="method-name">getAllPhotoByAlbumId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllPostsByAlbumId">
+                  </a> <!-- getAllPostsByAlbumId -->
+                  <span class="method-name">getAllPostsByAlbumId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllTodosByAlbumId">
+                  </a> <!-- getAllTodosByAlbumId -->
+                  <span class="method-name">getAllTodosByAlbumId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.users.Get</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllAlbumByUserId">
+                  </a> <!-- getAllAlbumByUserId -->
+                  <span class="method-name">getAllAlbumByUserId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllPhotoByUserId">
+                  </a> <!-- getAllPhotoByUserId -->
+                  <span class="method-name">getAllPhotoByUserId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllPostByUserId">
+                  </a> <!-- getAllPostByUserId -->
+                  <span class="method-name">getAllPostByUserId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllTodosByUserId">
+                  </a> <!-- getAllTodosByUserId -->
+                  <span class="method-name">getAllTodosByUserId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAllUsers">
+                  </a> <!-- getAllUsers -->
+                  <span class="method-name">getAllUsers</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getUserById">
+                  </a> <!-- getUserById -->
+                  <span class="method-name">getUserById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.album.Delete</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="deleteAlbumById">
+                  </a> <!-- deleteAlbumById -->
+                  <span class="method-name">deleteAlbumById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.photos.Delete</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="deletePhotoById">
+                  </a> <!-- deletePhotoById -->
+                  <span class="method-name">deletePhotoById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.todos.Delete</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="deleteTodoById">
+                  </a> <!-- deleteTodoById -->
+                  <span class="method-name">deleteTodoById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.album.Put</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="updateAlbum">
+                  </a> <!-- updateAlbum -->
+                  <span class="method-name">updateAlbum</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.users.Delete</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="deleteUserById">
+                  </a> <!-- deleteUserById -->
+                  <span class="method-name">deleteUserById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.photos.Patch</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="patchPhoto">
+                  </a> <!-- patchPhoto -->
+                  <span class="method-name">patchPhoto</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.comments.Post</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="createComments">
+                  </a> <!-- createComments -->
+                  <span class="method-name">createComments</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.posts.Patch</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="patchPostById">
+                  </a> <!-- patchPostById -->
+                  <span class="method-name">patchPostById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.posts.Put</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="updatePostById">
+                  </a> <!-- updatePostById -->
+                  <span class="method-name">updatePostById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.photos.Put</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="updatePhoto">
+                  </a> <!-- updatePhoto -->
+                  <span class="method-name">updatePhoto</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.users.Put</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="updateUserById">
+                  </a> <!-- updateUserById -->
+                  <span class="method-name">updateUserById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.todos.Put</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="updateTodoById">
+                  </a> <!-- updateTodoById -->
+                  <span class="method-name">updateTodoById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.comments.Patch</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="patchCommentById">
+                  </a> <!-- patchCommentById -->
+                  <span class="method-name">patchCommentById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.posts.Delete</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="deletePostById">
+                  </a> <!-- deletePostById -->
+                  <span class="method-name">deletePostById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.comments.Put</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="updateCommentById">
+                  </a> <!-- updateCommentById -->
+                  <span class="method-name">updateCommentById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.posts.Post</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="createPost">
+                  </a> <!-- createPost -->
+                  <span class="method-name">createPost</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.comments.Delete</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="deleteCommentsById">
+                  </a> <!-- deleteCommentsById -->
+                  <span class="method-name">deleteCommentsById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.users.Patch</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="patchUserById">
+                  </a> <!-- patchUserById -->
+                  <span class="method-name">patchUserById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.lise.testCases.album.Patch</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="patchAlbum">
+                  </a> <!-- patchAlbum -->
+                  <span class="method-name">patchAlbum</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+        </div> <!-- panel All_Test_Suite -->
+        <div panel-name="test-xml-All_Test_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">/Users/apple/Desktop/code/second2project/javaCoreProject/JsonHolder/testng.xml</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite name=&quot;All Test Suite&quot; guice-stage=&quot;DEVELOPMENT&quot; verbose=&quot;0&quot;&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;/Users/apple/Desktop/code/second2project/javaCoreProject/JsonHolder&quot; verbose=&quot;2&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;com.lise.testCases.album.Delete&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.album.Get&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.album.Patch&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.album.Post&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.album.Put&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.comments.Delete&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.comments.Get&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.comments.Patch&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.comments.Post&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.comments.Put&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.photos.Delete&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.photos.Get&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.photos.Patch&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.photos.Post&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.photos.Put&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.posts.Delete&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.posts.Get&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.posts.Patch&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.posts.Post&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.posts.Put&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.todos.Delete&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.todos.Get&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.todos.Patch&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.todos.Post&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.todos.Put&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.users.Delete&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.users.Get&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.users.Patch&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.users.Post&quot;/&gt;
+      &lt;class name=&quot;com.lise.testCases.users.Put&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- /Users/apple/Desktop/code/second2project/javaCoreProject/JsonHolder --&gt;
+&lt;/suite&gt; &lt;!-- All Test Suite --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-All_Test_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for All Test Suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">/Users/apple/Desktop/code/second2project/javaCoreProject/JsonHolder (30 classes)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-All_Test_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for All Test Suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-All_Test_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for All Test Suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_All_Test_Suite');
+function tableData_All_Test_Suite() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(65);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'updateCommentById')
+data.setCell(0, 2, 'com.lise.testCases.comments.Put')
+data.setCell(0, 3, 16935);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'updateTodoById')
+data.setCell(1, 2, 'com.lise.testCases.todos.Put')
+data.setCell(1, 3, 16116);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'deleteCommentsById')
+data.setCell(2, 2, 'com.lise.testCases.comments.Delete')
+data.setCell(2, 3, 11568);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'deleteAlbumById')
+data.setCell(3, 2, 'com.lise.testCases.album.Delete')
+data.setCell(3, 3, 11108);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'deleteUserById')
+data.setCell(4, 2, 'com.lise.testCases.users.Delete')
+data.setCell(4, 3, 10311);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'deletePhotoById')
+data.setCell(5, 2, 'com.lise.testCases.photos.Delete')
+data.setCell(5, 3, 10207);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'patchTodoById')
+data.setCell(6, 2, 'com.lise.testCases.todos.Patch')
+data.setCell(6, 3, 10111);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'patchCommentById')
+data.setCell(7, 2, 'com.lise.testCases.comments.Patch')
+data.setCell(7, 3, 9410);
+data.setCell(8, 0, 8)
+data.setCell(8, 1, 'patchUserById')
+data.setCell(8, 2, 'com.lise.testCases.users.Patch')
+data.setCell(8, 3, 9179);
+data.setCell(9, 0, 9)
+data.setCell(9, 1, 'patchPhoto')
+data.setCell(9, 2, 'com.lise.testCases.photos.Patch')
+data.setCell(9, 3, 8496);
+data.setCell(10, 0, 10)
+data.setCell(10, 1, 'updatePhoto')
+data.setCell(10, 2, 'com.lise.testCases.photos.Put')
+data.setCell(10, 3, 8367);
+data.setCell(11, 0, 11)
+data.setCell(11, 1, 'patchAlbum')
+data.setCell(11, 2, 'com.lise.testCases.album.Patch')
+data.setCell(11, 3, 7370);
+data.setCell(12, 0, 12)
+data.setCell(12, 1, 'getAllPhotoByUserId')
+data.setCell(12, 2, 'com.lise.testCases.users.Get')
+data.setCell(12, 3, 7005);
+data.setCell(13, 0, 13)
+data.setCell(13, 1, 'deleteTodoById')
+data.setCell(13, 2, 'com.lise.testCases.todos.Delete')
+data.setCell(13, 3, 6141);
+data.setCell(14, 0, 14)
+data.setCell(14, 1, 'updateAlbum')
+data.setCell(14, 2, 'com.lise.testCases.album.Put')
+data.setCell(14, 3, 5864);
+data.setCell(15, 0, 15)
+data.setCell(15, 1, 'getAllPostByPhotoId')
+data.setCell(15, 2, 'com.lise.testCases.photos.Get')
+data.setCell(15, 3, 5662);
+data.setCell(16, 0, 16)
+data.setCell(16, 1, 'getAllPhotos')
+data.setCell(16, 2, 'com.lise.testCases.photos.Get')
+data.setCell(16, 3, 5211);
+data.setCell(17, 0, 17)
+data.setCell(17, 1, 'updatePostById')
+data.setCell(17, 2, 'com.lise.testCases.posts.Put')
+data.setCell(17, 3, 5121);
+data.setCell(18, 0, 18)
+data.setCell(18, 1, 'createComments')
+data.setCell(18, 2, 'com.lise.testCases.comments.Post')
+data.setCell(18, 3, 4978);
+data.setCell(19, 0, 19)
+data.setCell(19, 1, 'createPhoto')
+data.setCell(19, 2, 'com.lise.testCases.photos.Post')
+data.setCell(19, 3, 4709);
+data.setCell(20, 0, 20)
+data.setCell(20, 1, 'deletePostById')
+data.setCell(20, 2, 'com.lise.testCases.posts.Delete')
+data.setCell(20, 3, 4531);
+data.setCell(21, 0, 21)
+data.setCell(21, 1, 'createAlbum')
+data.setCell(21, 2, 'com.lise.testCases.album.Post')
+data.setCell(21, 3, 4503);
+data.setCell(22, 0, 22)
+data.setCell(22, 1, 'createTodo')
+data.setCell(22, 2, 'com.lise.testCases.todos.Post')
+data.setCell(22, 3, 4356);
+data.setCell(23, 0, 23)
+data.setCell(23, 1, 'updateUserById')
+data.setCell(23, 2, 'com.lise.testCases.users.Put')
+data.setCell(23, 3, 4083);
+data.setCell(24, 0, 24)
+data.setCell(24, 1, 'getAllCommentsByAlbumId')
+data.setCell(24, 2, 'com.lise.testCases.album.Get')
+data.setCell(24, 3, 3474);
+data.setCell(25, 0, 25)
+data.setCell(25, 1, 'getAllTodosByUserId')
+data.setCell(25, 2, 'com.lise.testCases.users.Get')
+data.setCell(25, 3, 3255);
+data.setCell(26, 0, 26)
+data.setCell(26, 1, 'patchPostById')
+data.setCell(26, 2, 'com.lise.testCases.posts.Patch')
+data.setCell(26, 3, 3163);
+data.setCell(27, 0, 27)
+data.setCell(27, 1, 'getAllPhotoByCommentsId')
+data.setCell(27, 2, 'com.lise.testCases.comments.Get')
+data.setCell(27, 3, 2877);
+data.setCell(28, 0, 28)
+data.setCell(28, 1, 'getAllPhotoByTodoId')
+data.setCell(28, 2, 'com.lise.testCases.todos.Get')
+data.setCell(28, 3, 2872);
+data.setCell(29, 0, 29)
+data.setCell(29, 1, 'getAllAlbumByUserId')
+data.setCell(29, 2, 'com.lise.testCases.users.Get')
+data.setCell(29, 3, 2662);
+data.setCell(30, 0, 30)
+data.setCell(30, 1, 'createPost')
+data.setCell(30, 2, 'com.lise.testCases.posts.Post')
+data.setCell(30, 3, 2582);
+data.setCell(31, 0, 31)
+data.setCell(31, 1, 'getAllPhotoByPostId')
+data.setCell(31, 2, 'com.lise.testCases.posts.Get')
+data.setCell(31, 3, 2142);
+data.setCell(32, 0, 32)
+data.setCell(32, 1, 'getAllPostByUserId')
+data.setCell(32, 2, 'com.lise.testCases.users.Get')
+data.setCell(32, 3, 2126);
+data.setCell(33, 0, 33)
+data.setCell(33, 1, 'createUser')
+data.setCell(33, 2, 'com.lise.testCases.users.Post')
+data.setCell(33, 3, 2083);
+data.setCell(34, 0, 34)
+data.setCell(34, 1, 'getAllPostsByAlbumId')
+data.setCell(34, 2, 'com.lise.testCases.album.Get')
+data.setCell(34, 3, 2075);
+data.setCell(35, 0, 35)
+data.setCell(35, 1, 'getAllTodosByAlbumId')
+data.setCell(35, 2, 'com.lise.testCases.album.Get')
+data.setCell(35, 3, 1939);
+data.setCell(36, 0, 36)
+data.setCell(36, 1, 'getAllAlbumByPostId')
+data.setCell(36, 2, 'com.lise.testCases.album.Get')
+data.setCell(36, 3, 1900);
+data.setCell(37, 0, 37)
+data.setCell(37, 1, 'getAlbumByCommentId')
+data.setCell(37, 2, 'com.lise.testCases.comments.Get')
+data.setCell(37, 3, 1832);
+data.setCell(38, 0, 38)
+data.setCell(38, 1, 'getAllPhotoByAlbumId')
+data.setCell(38, 2, 'com.lise.testCases.album.Get')
+data.setCell(38, 3, 1728);
+data.setCell(39, 0, 39)
+data.setCell(39, 1, 'getAllAlbumByUserId')
+data.setCell(39, 2, 'com.lise.testCases.album.Get')
+data.setCell(39, 3, 1703);
+data.setCell(40, 0, 40)
+data.setCell(40, 1, 'getAllUsers')
+data.setCell(40, 2, 'com.lise.testCases.users.Get')
+data.setCell(40, 3, 1660);
+data.setCell(41, 0, 41)
+data.setCell(41, 1, 'getAllAlbums')
+data.setCell(41, 2, 'com.lise.testCases.album.Get')
+data.setCell(41, 3, 1506);
+data.setCell(42, 0, 42)
+data.setCell(42, 1, 'getAllCommentsByTodoId')
+data.setCell(42, 2, 'com.lise.testCases.todos.Get')
+data.setCell(42, 3, 1457);
+data.setCell(43, 0, 43)
+data.setCell(43, 1, 'getPhotoById')
+data.setCell(43, 2, 'com.lise.testCases.photos.Get')
+data.setCell(43, 3, 1333);
+data.setCell(44, 0, 44)
+data.setCell(44, 1, 'getUserById')
+data.setCell(44, 2, 'com.lise.testCases.users.Get')
+data.setCell(44, 3, 1317);
+data.setCell(45, 0, 45)
+data.setCell(45, 1, 'getAllPhotoByAlbumId')
+data.setCell(45, 2, 'com.lise.testCases.photos.Get')
+data.setCell(45, 3, 1292);
+data.setCell(46, 0, 46)
+data.setCell(46, 1, 'getAllCommentsByPostId')
+data.setCell(46, 2, 'com.lise.testCases.comments.Get')
+data.setCell(46, 3, 1271);
+data.setCell(47, 0, 47)
+data.setCell(47, 1, 'getAllAlbumByTodoId')
+data.setCell(47, 2, 'com.lise.testCases.todos.Get')
+data.setCell(47, 3, 1227);
+data.setCell(48, 0, 48)
+data.setCell(48, 1, 'getAllTodosByPhotoId')
+data.setCell(48, 2, 'com.lise.testCases.photos.Get')
+data.setCell(48, 3, 1211);
+data.setCell(49, 0, 49)
+data.setCell(49, 1, 'getAllComments')
+data.setCell(49, 2, 'com.lise.testCases.comments.Get')
+data.setCell(49, 3, 1161);
+data.setCell(50, 0, 50)
+data.setCell(50, 1, 'getAllTodoByUserId')
+data.setCell(50, 2, 'com.lise.testCases.todos.Get')
+data.setCell(50, 3, 1124);
+data.setCell(51, 0, 51)
+data.setCell(51, 1, 'getAlbumById')
+data.setCell(51, 2, 'com.lise.testCases.album.Get')
+data.setCell(51, 3, 984);
+data.setCell(52, 0, 52)
+data.setCell(52, 1, 'getAllCommentsByPhotoId')
+data.setCell(52, 2, 'com.lise.testCases.photos.Get')
+data.setCell(52, 3, 828);
+data.setCell(53, 0, 53)
+data.setCell(53, 1, 'getCommentById')
+data.setCell(53, 2, 'com.lise.testCases.comments.Get')
+data.setCell(53, 3, 826);
+data.setCell(54, 0, 54)
+data.setCell(54, 1, 'getAllTodosByCommentId')
+data.setCell(54, 2, 'com.lise.testCases.comments.Get')
+data.setCell(54, 3, 817);
+data.setCell(55, 0, 55)
+data.setCell(55, 1, 'getAllAlbumByPostId')
+data.setCell(55, 2, 'com.lise.testCases.posts.Get')
+data.setCell(55, 3, 707);
+data.setCell(56, 0, 56)
+data.setCell(56, 1, 'getAllAlbumByPhotoId')
+data.setCell(56, 2, 'com.lise.testCases.photos.Get')
+data.setCell(56, 3, 568);
+data.setCell(57, 0, 57)
+data.setCell(57, 1, 'getAllTodos')
+data.setCell(57, 2, 'com.lise.testCases.todos.Get')
+data.setCell(57, 3, 552);
+data.setCell(58, 0, 58)
+data.setCell(58, 1, 'getTodoById')
+data.setCell(58, 2, 'com.lise.testCases.todos.Get')
+data.setCell(58, 3, 532);
+data.setCell(59, 0, 59)
+data.setCell(59, 1, 'getAllPostByTodoId')
+data.setCell(59, 2, 'com.lise.testCases.todos.Get')
+data.setCell(59, 3, 485);
+data.setCell(60, 0, 60)
+data.setCell(60, 1, 'getAllPostByUserId')
+data.setCell(60, 2, 'com.lise.testCases.posts.Get')
+data.setCell(60, 3, 475);
+data.setCell(61, 0, 61)
+data.setCell(61, 1, 'getAllTodosByPostId')
+data.setCell(61, 2, 'com.lise.testCases.posts.Get')
+data.setCell(61, 3, 459);
+data.setCell(62, 0, 62)
+data.setCell(62, 1, 'getAllCommentByPostsId')
+data.setCell(62, 2, 'com.lise.testCases.posts.Get')
+data.setCell(62, 3, 456);
+data.setCell(63, 0, 63)
+data.setCell(63, 1, 'getAllPosts')
+data.setCell(63, 2, 'com.lise.testCases.posts.Get')
+data.setCell(63, 3, 449);
+data.setCell(64, 0, 64)
+data.setCell(64, 1, 'getPostById')
+data.setCell(64, 2, 'com.lise.testCases.posts.Get')
+data.setCell(64, 3, 416);
+window.suiteTableData['All_Test_Suite']= { tableData: data, tableDiv: 'times-div-All_Test_Suite'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 4 minutes</span>
+              <div id="times-div-All_Test_Suite">
+              </div> <!-- times-div-All_Test_Suite -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-All_Test_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for All Test Suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-All_Test_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">29 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.todos.Get</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.photos.Post</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.users.Post</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.todos.Post</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.todos.Patch</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.comments.Get</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.album.Post</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.posts.Get</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.photos.Get</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.album.Get</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.users.Get</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.photos.Delete</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.todos.Delete</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.album.Put</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.users.Delete</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.comments.Post</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.photos.Patch</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.posts.Patch</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.posts.Put</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.photos.Put</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.users.Put</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.todos.Put</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.comments.Patch</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.posts.Delete</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.comments.Put</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.posts.Post</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.users.Patch</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.comments.Delete</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.lise.testCases.album.Patch</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">BeforeSuiteTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-All_Test_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.album.Delete</div> <!-- chronological-class-name -->
+              <div class="configuration-suite before">
+                <span class="method-name">BeforeSuiteTest</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-suite before -->
+              <div class="test-method">
+                <span class="method-name">deleteAlbumById</span>
+                <span class="method-start">656 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.album.Get</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">getAlbumById</span>
+                <span class="method-start">11770 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllAlbumByPostId</span>
+                <span class="method-start">12755 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllAlbumByUserId</span>
+                <span class="method-start">14656 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllAlbums</span>
+                <span class="method-start">16360 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllCommentsByAlbumId</span>
+                <span class="method-start">17867 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllPhotoByAlbumId</span>
+                <span class="method-start">21342 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllPostsByAlbumId</span>
+                <span class="method-start">23071 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllTodosByAlbumId</span>
+                <span class="method-start">25146 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.album.Patch</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">patchAlbum</span>
+                <span class="method-start">27086 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.album.Post</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">createAlbum</span>
+                <span class="method-start">34457 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.album.Put</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">updateAlbum</span>
+                <span class="method-start">38961 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.comments.Delete</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">deleteCommentsById</span>
+                <span class="method-start">44826 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.comments.Get</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">getAlbumByCommentId</span>
+                <span class="method-start">56396 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllComments</span>
+                <span class="method-start">58229 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllCommentsByPostId</span>
+                <span class="method-start">59391 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllPhotoByCommentsId</span>
+                <span class="method-start">60663 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllTodosByCommentId</span>
+                <span class="method-start">63541 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getCommentById</span>
+                <span class="method-start">64359 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.comments.Patch</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">patchCommentById</span>
+                <span class="method-start">65186 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.comments.Post</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">createComments</span>
+                <span class="method-start">74596 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.comments.Put</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">updateCommentById</span>
+                <span class="method-start">79575 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.photos.Delete</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">deletePhotoById</span>
+                <span class="method-start">96511 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.photos.Get</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">getAllAlbumByPhotoId</span>
+                <span class="method-start">106719 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllCommentsByPhotoId</span>
+                <span class="method-start">107287 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllPhotoByAlbumId</span>
+                <span class="method-start">108115 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllPhotos</span>
+                <span class="method-start">109408 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllPostByPhotoId</span>
+                <span class="method-start">114620 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllTodosByPhotoId</span>
+                <span class="method-start">120283 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getPhotoById</span>
+                <span class="method-start">121495 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.photos.Patch</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">patchPhoto</span>
+                <span class="method-start">122829 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.photos.Post</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">createPhoto</span>
+                <span class="method-start">131326 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.photos.Put</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">updatePhoto</span>
+                <span class="method-start">136036 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.posts.Delete</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">deletePostById</span>
+                <span class="method-start">144404 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.posts.Get</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">getAllAlbumByPostId</span>
+                <span class="method-start">148936 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllCommentByPostsId</span>
+                <span class="method-start">149643 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllPhotoByPostId</span>
+                <span class="method-start">150100 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllPostByUserId</span>
+                <span class="method-start">152242 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllPosts</span>
+                <span class="method-start">152718 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllTodosByPostId</span>
+                <span class="method-start">153168 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getPostById</span>
+                <span class="method-start">153627 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.posts.Patch</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">patchPostById</span>
+                <span class="method-start">154044 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.posts.Post</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">createPost</span>
+                <span class="method-start">157208 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.posts.Put</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">updatePostById</span>
+                <span class="method-start">159791 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.todos.Delete</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">deleteTodoById</span>
+                <span class="method-start">164913 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.todos.Get</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">getAllAlbumByTodoId</span>
+                <span class="method-start">171055 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllCommentsByTodoId</span>
+                <span class="method-start">172283 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllPhotoByTodoId</span>
+                <span class="method-start">173741 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllPostByTodoId</span>
+                <span class="method-start">176614 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllTodoByUserId</span>
+                <span class="method-start">177099 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllTodos</span>
+                <span class="method-start">178223 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getTodoById</span>
+                <span class="method-start">178776 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.todos.Patch</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">patchTodoById</span>
+                <span class="method-start">179309 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.todos.Post</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">createTodo</span>
+                <span class="method-start">189421 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.todos.Put</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">updateTodoById</span>
+                <span class="method-start">193778 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.users.Delete</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">deleteUserById</span>
+                <span class="method-start">209895 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.users.Get</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">getAllAlbumByUserId</span>
+                <span class="method-start">220207 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllPhotoByUserId</span>
+                <span class="method-start">222869 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllPostByUserId</span>
+                <span class="method-start">229874 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllTodosByUserId</span>
+                <span class="method-start">232001 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getAllUsers</span>
+                <span class="method-start">235256 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getUserById</span>
+                <span class="method-start">236916 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.users.Patch</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">patchUserById</span>
+                <span class="method-start">238234 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.users.Post</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">createUser</span>
+                <span class="method-start">247414 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.lise.testCases.users.Put</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">updateUserById</span>
+                <span class="method-start">249498 ms</span>
+              </div> <!-- test-method -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+</html>

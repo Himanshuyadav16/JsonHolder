@@ -2,11 +2,16 @@ package com.lise.testCases.photos;
 
 import com.github.javafaker.Faker;
 import com.lise.BaseClass;
+import com.lise.models.albums.AlbumPostBody;
+import com.lise.models.albums.AlbumPostResponse;
+import com.lise.models.photos.PhotoPostBody;
+import com.lise.models.photos.PhotoPostResponse;
+import com.lise.models.photos.PhotoPutBody;
+import com.lise.models.photos.PhotoPutResponse;
+import com.lise.models.users.UserPostBody;
+import com.lise.models.users.UserPostResponse;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
-import io.restassured.response.Response;
-import org.apache.http.HttpStatus;
-import org.json.JSONObject;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -18,90 +23,104 @@ public class Put extends BaseClass {
     @Test
     public void updatePhoto() {
         Faker faker = new Faker();
-        String userName = faker.name().name();
-        String userEmail = faker.internet().emailAddress();
-        String userBody = " {\n" +
-                "            \"name\": \"" + userName + "\",\n" +
-                "        \"email\": \"" + userEmail + "\"\n" +
-                "    }";
-        Response userResponse = createUser(userBody);
+        UserPostBody userPostBody =new UserPostBody();
+        userPostBody.setName(faker.name().name());
+        userPostBody.setEmail(faker.internet().emailAddress());
 
-        assertThat(userResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
+        UserPostResponse userPostResponse=createUser(userPostBody);
 
-        JSONObject jsonObjectUser = new JSONObject(userResponse.asString());
+        assertThat(userPostResponse.getName(),is(userPostBody.name));
+        assertThat(userPostResponse.getEmail(),is(userPostBody.email));
+        assertThat(userPostResponse.getId(),notNullValue());
+        int userId = userPostResponse.getId();
 
-        assertThat(jsonObjectUser.getString("name"), is(userName));
-        assertThat(jsonObjectUser.getString("email"), is(userEmail));
-        assertThat(jsonObjectUser.getInt("id"), notNullValue());
+        AlbumPostBody albumPostBody=new AlbumPostBody();
+        albumPostBody.setTitle("quidem molestiae enim");
+        albumPostBody.setUserId(userId);
 
-        int userId = jsonObjectUser.getInt("id");
+        AlbumPostResponse albumPostResponse=createAlbum(albumPostBody);
+        assertThat(albumPostResponse.getTitle(),is(albumPostBody.title));
+        assertThat(albumPostResponse.getUserId(),is(userId));
+        assertThat(albumPostResponse.getId(),notNullValue());
 
-        String albumTitle = "quidem molestiae enim";
-        String albumBody = " {\n" +
-                "        \"userId\": " + userId + ",\n" +
-                "        \"title\": \"" + albumTitle + "\"\n" +
-                "    }";
+        int albumId = albumPostResponse.getId();
 
-        Response albumResponse = createAlbum(albumBody);
+        PhotoPostBody photoPostBody=new PhotoPostBody();
 
-        assertThat(albumResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
+        photoPostBody.setUrl("https://via.placeholder.com/600/92c952");
+        photoPostBody.setAlbumId(albumId);
+        photoPostBody.setThumbnailUrl("https://via.placeholder.com/150/92c952");
+        photoPostBody.setTitle("accusamus beatae ad facilis cum similique qui sunt");
 
-        JSONObject jsonObjectAlbum = new JSONObject(albumResponse.asString());
+        PhotoPostResponse photoPostResponse = createPhoto(photoPostBody);
 
-        assertThat(jsonObjectAlbum.getString("title"), is(albumTitle));
-        assertThat(jsonObjectAlbum.getInt("userId"), is(userId));
-        assertThat(jsonObjectAlbum.getInt("id"), notNullValue());
+        assertThat(photoPostResponse.getAlbumId(), is(albumId));
+        assertThat(photoPostResponse.getId(), notNullValue());
+        assertThat(photoPostResponse.getTitle(), is(photoPostBody.title));
 
-        int albumId = jsonObjectAlbum.getInt("id");
-
-        String photoTitle = "accusamus beatae ad facilis cum similique qui sunt";
-        String photoUrl = "https://via.placeholder.com/600/92c952";
-        String photoThumbnailUrl = "https://via.placeholder.com/150/92c952";
-        String photoBody = " {\n" +
-                "        \"albumId\": " + albumId + ",\n" +
-                "        \"title\": \"" + photoTitle + "\",\n" +
-                "        \"url\": \"" + photoUrl + "\",\n" +
-                "        \"thumbnailUrl\": \"" + photoThumbnailUrl + "\"\n" +
-                "    }";
-        Response photoResponse = createPhoto(photoBody);
-
-        JSONObject jsonObjectPhoto = new JSONObject(photoResponse.asString());
-
-        assertThat(jsonObjectPhoto.getInt("albumId"), is(albumId));
-        assertThat(jsonObjectPhoto.getInt("id"), notNullValue());
-        assertThat(jsonObjectPhoto.getString("title"), is(photoTitle));
-        assertThat(jsonObjectPhoto.getString("url"), is(photoUrl));
-        assertThat(jsonObjectPhoto.getString("thumbnailUrl"), is(photoThumbnailUrl));
+        assertThat(photoPostResponse.getUrl(), is(photoPostBody.getUrl()));
+        assertThat(photoPostResponse.getThumbnailUrl(), is(photoPostBody.thumbnailUrl));
 
         int photoId = 1;
+        PhotoPutBody photoPutBody=new PhotoPutBody();
 
-        String photoPutTitle = "reprehenderit est deserunt velit ipsam";
-        String photoPutUrl = "https://via.placeholder.com/600/771796";
-        String photoPutThumbnailUrl = "https://via.placeholder.com/150/771796";
-        String photoPutBody = " {\n" +
-                "        \"albumId\": " + albumId + ",\n" +
-                "        \"title\": \"" + photoPutTitle + "\",\n" +
-                "        \"url\": \"" + photoPutUrl + "\",\n" +
-                "        \"thumbnailUrl\": \"" + photoPutThumbnailUrl + "\"\n" +
-                "    }";
-        Response photoPutResponse = updatePhoto(photoPutBody, photoId);
+        photoPutBody.setAlbumId(albumId);
+        photoPutBody.setTitle("reprehenderit est deserunt velit ipsam");
+        photoPutBody.setUrl("https://via.placeholder.com/600/771796");
+        photoPutBody.setThumbnailUrl("https://via.placeholder.com/150/92c952");
 
-        JSONObject jsonObjectPutPhoto = new JSONObject(photoPutResponse.asString());
+        PhotoPutResponse photoPutResponse = updatePhoto(photoPutBody, photoId);
 
-        assertThat(jsonObjectPutPhoto.getInt("albumId"), is(albumId));
-        assertThat(jsonObjectPutPhoto.getInt("id"), notNullValue());
-        assertThat(jsonObjectPutPhoto.getString("title"), is(photoPutTitle));
-        assertThat(jsonObjectPutPhoto.getString("url"), is(photoPutUrl));
-        assertThat(jsonObjectPutPhoto.getString("thumbnailUrl"), is(photoPutThumbnailUrl));
+        assertThat(photoPutResponse.getAlbumId(), is(albumId));
+        assertThat(photoPutResponse.getId(), notNullValue());
+        assertThat(photoPutResponse.getTitle(), is(photoPutBody.title));
+        assertThat(photoPutResponse.getUrl(), is(photoPutBody.url));
+        assertThat(photoPutResponse.getThumbnailUrl(), is(photoPutBody.thumbnailUrl));
     }
 
-    //Update Photos
-    public Response updatePhoto(String body, int id) {
-        Response response = given()
+
+    //  Create User
+    public UserPostResponse createUser(UserPostBody userPostBody) {
+        UserPostResponse response = given()
+                .contentType(ContentType.JSON)
+                .body(userPostBody)
+                .when()
+                .request(Method.POST, "/users")
+                .as(UserPostResponse.class);
+        return response;
+    }
+    //Create Album
+    public AlbumPostResponse createAlbum(AlbumPostBody body) {
+        AlbumPostResponse response = given()
                 .contentType(ContentType.JSON)
                 .body(body)
                 .when()
-                .request(Method.PUT, "/photos/" + id);
+                .request(Method.POST, "/posts")
+                .as(AlbumPostResponse.class);
+        return response;
+    }
+    //create Photos
+    public PhotoPostResponse createPhoto(PhotoPostBody body){
+        PhotoPostResponse response=given()
+                .contentType(ContentType.JSON)
+                .body(body)
+                .when()
+                .request(Method.POST,"/photos")
+                .then()
+                .extract()
+                .as(PhotoPostResponse.class);
+        return response;
+    }
+    //Update Photos
+    public PhotoPutResponse updatePhoto(PhotoPutBody body, int id) {
+        PhotoPutResponse response = given()
+                .contentType(ContentType.JSON)
+                .body(body)
+                .when()
+                .request(Method.PUT, "/photos/" + id)
+                .then()
+                .extract()
+                .as(PhotoPutResponse.class);
         return response;
     }
 }

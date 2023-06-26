@@ -19,7 +19,7 @@ import static org.hamcrest.Matchers.notNullValue;
 
 public class Put extends BaseClass {
     @Test
-    public void UpdateTodoById() {
+    public void updateTodoById() {
         Faker faker = new Faker();
         UserPostBody userPostBody =new UserPostBody();
         userPostBody.setName(faker.name().name());
