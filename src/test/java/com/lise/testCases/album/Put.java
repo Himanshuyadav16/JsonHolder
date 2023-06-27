@@ -2,11 +2,14 @@ package com.lise.testCases.album;
 
 import com.github.javafaker.Faker;
 import com.lise.BaseClass;
+import com.lise.models.albums.AlbumPostBody;
+import com.lise.models.albums.AlbumPostResponse;
+import com.lise.models.albums.AlbumPutBody;
+import com.lise.models.albums.AlbumPutResponse;
+import com.lise.models.users.UserPostBody;
+import com.lise.models.users.UserPostResponse;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
-import io.restassured.response.Response;
-import org.apache.http.HttpStatus;
-import org.json.JSONObject;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -18,66 +21,70 @@ public class Put extends BaseClass {
     @Test
     public void updateAlbum() {
         Faker faker = new Faker();
-        String userName = faker.name().name();
-        String userEmail = faker.internet().emailAddress();
-        String userBody = " {\n" +
-                "            \"name\": \"" + userName + "\",\n" +
-                "        \"email\": \"" + userEmail + "\"\n" +
-                "    }";
-        Response userResponse = createUser(userBody);
+        UserPostBody userPostBody =new UserPostBody();
+        userPostBody.setName(faker.name().name());
+        userPostBody.setEmail(faker.internet().emailAddress());
 
-        assertThat(userResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
+        UserPostResponse userPostResponse=createUser(userPostBody);
 
-        JSONObject jsonObjectUser = new JSONObject(userResponse.asString());
+        assertThat(userPostResponse.getName(),is(userPostBody.name));
+        assertThat(userPostResponse.getEmail(),is(userPostBody.email));
+        assertThat(userPostResponse.getId(),notNullValue());
 
-        assertThat(jsonObjectUser.getString("name"), is(userName));
-        assertThat(jsonObjectUser.getString("email"), is(userEmail));
-        assertThat(jsonObjectUser.getInt("id"), notNullValue());
+        int userId = userPostResponse.getId();
 
-        int userId = jsonObjectUser.getInt("id");
+        AlbumPostBody albumPostBody=new AlbumPostBody();
+        albumPostBody.setTitle("quidem molestiae enim");
+        albumPostBody.setUserId(userId);
 
-        String albumTitle = "quidem molestiae enim";
-        String albumBody = " {\n" +
-                "        \"userId\": " + userId + ",\n" +
-                "        \"title\": \"" + albumTitle + "\"\n" +
-                "    }";
-
-        Response albumResponse = createAlbum(albumBody);
-
-        assertThat(albumResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
-
-        JSONObject jsonObjectAlbum = new JSONObject(albumResponse.asString());
-
-        assertThat(jsonObjectAlbum.getString("title"), is(albumTitle));
-        assertThat(jsonObjectAlbum.getInt("userId"), is(userId));
-        assertThat(jsonObjectAlbum.getInt("id"), notNullValue());
+        AlbumPostResponse albumPostResponse=createAlbum(albumPostBody);
+        assertThat(albumPostResponse.getTitle(),is(albumPostBody.title));
+        assertThat(albumPostResponse.getUserId(),is(userId));
+        assertThat(albumPostResponse.getId(),notNullValue());
 
         int albumId = 1;
-        String albumPutTitle = "quidem moleste enim";
-        String albumPutBody = " {\n" +
-                "        \"userId\": " + userId + ",\n" +
-                "        \"title\": \"" + albumPutTitle + "\"\n" +
-                "    }";
 
-        Response albumPutResponse = updateAlbum(albumPutBody, albumId);
+        AlbumPutBody albumPutBody=new AlbumPutBody();
+        albumPutBody.setUserId(userId);
+        albumPutBody.setTitle("enim quidem molestiae");
 
-        assertThat(albumPutResponse.getStatusCode(), is(HttpStatus.SC_OK));
+        AlbumPutResponse albumPutResponse = updateAlbum(albumPutBody, albumId);
 
-        JSONObject jsonObjectPutAlbum = new JSONObject(albumPutResponse.asString());
-
-        assertThat(jsonObjectPutAlbum.getString("title"), is(albumPutTitle));
-        assertThat(jsonObjectPutAlbum.getInt("userId"), is(userId));
-        assertThat(jsonObjectPutAlbum.getInt("id"), notNullValue());
+        assertThat(albumPutResponse.getTitle(), is(albumPutBody.title));
+        assertThat(albumPutResponse.getUserId(), is(userId));
+        assertThat(albumPutResponse.getId(), notNullValue());
     }
-
-    // update Album
-    public Response updateAlbum(String body, int id) {
-        Response response = given()
+    //  Create User
+    public UserPostResponse createUser(UserPostBody userPostBody) {
+        UserPostResponse response = given()
                 .contentType(ContentType.JSON)
-                .body(body)
+                .body(userPostBody)
                 .when()
-                .request(Method.PUT, "/albums/" + id);
+                .request(Method.POST, "/users")
+                .as(UserPostResponse.class);
         return response;
     }
 
+    //Create Album
+    public AlbumPostResponse createAlbum(AlbumPostBody body) {
+        AlbumPostResponse response = given()
+                .contentType(ContentType.JSON)
+                .body(body)
+                .when()
+                .request(Method.POST, "/posts")
+                .as(AlbumPostResponse.class);
+        return response;
+    }
+
+
+    // update Album
+    public AlbumPutResponse updateAlbum(AlbumPutBody body, int id) {
+        AlbumPutResponse response = given()
+                .contentType(ContentType.JSON)
+                .body(body)
+                .when()
+                .request(Method.PUT, "/albums/" + id)
+                .as(AlbumPutResponse.class);
+        return response;
+    }
 }
