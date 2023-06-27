@@ -12,6 +12,7 @@ import com.lise.models.users.UserPostBody;
 import com.lise.models.users.UserPostResponse;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -76,41 +77,14 @@ public class Put extends BaseClass {
         assertThat(photoPutResponse.getTitle(), is(photoPutBody.title));
         assertThat(photoPutResponse.getUrl(), is(photoPutBody.url));
         assertThat(photoPutResponse.getThumbnailUrl(), is(photoPutBody.thumbnailUrl));
+
+        Response deletePhotoResponse=deletePhotoById(photoId);
+
+        Response deleteAlbumResponse=deletePhotoById(albumId);
+
+        Response deleteUserResponse=deletePhotoById(userId);
     }
 
-
-    //  Create User
-    public UserPostResponse createUser(UserPostBody userPostBody) {
-        UserPostResponse response = given()
-                .contentType(ContentType.JSON)
-                .body(userPostBody)
-                .when()
-                .request(Method.POST, "/users")
-                .as(UserPostResponse.class);
-        return response;
-    }
-    //Create Album
-    public AlbumPostResponse createAlbum(AlbumPostBody body) {
-        AlbumPostResponse response = given()
-                .contentType(ContentType.JSON)
-                .body(body)
-                .when()
-                .request(Method.POST, "/posts")
-                .as(AlbumPostResponse.class);
-        return response;
-    }
-    //create Photos
-    public PhotoPostResponse createPhoto(PhotoPostBody body){
-        PhotoPostResponse response=given()
-                .contentType(ContentType.JSON)
-                .body(body)
-                .when()
-                .request(Method.POST,"/photos")
-                .then()
-                .extract()
-                .as(PhotoPostResponse.class);
-        return response;
-    }
     //Update Photos
     public PhotoPutResponse updatePhoto(PhotoPutBody body, int id) {
         PhotoPutResponse response = given()

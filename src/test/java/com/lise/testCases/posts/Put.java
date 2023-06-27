@@ -10,6 +10,7 @@ import com.lise.models.users.UserPostBody;
 import com.lise.models.users.UserPostResponse;
 import io.restassured.http.Method;
 
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -62,30 +63,12 @@ public class Put extends BaseClass {
         assertThat(postPutResponse.getBody(),is(postPutBody.body));
         assertThat(postPutResponse.getUserId(),is(postPutBody.userId));
         assertThat(postPutResponse.getId(),is(postId));
+
+        Response postDeleteResponse=deletePostById(postId);
+
+        Response userDeleteResponse=deletePostById(userId);
     }
 
-
-    //  Create User
-    public UserPostResponse createUser(UserPostBody userPostBody) {
-        UserPostResponse response = given()
-                .contentType(JSON)
-                .body(userPostBody)
-                .when()
-                .request(Method.POST, "/users")
-                .as(UserPostResponse.class);
-        return response;
-    }
-
-    // Create  Posts
-    public PostPostResponse createPost(PostPostBody body) {
-        PostPostResponse response = given()
-                .contentType(JSON)
-                .body(body)
-                .when()
-                .request(Method.POST, "/posts")
-                .as(PostPostResponse.class);
-        return response;
-    }
 
     //Post Update Method
     public PostPutResponse updatePostById(PostPutBody body, int id) {

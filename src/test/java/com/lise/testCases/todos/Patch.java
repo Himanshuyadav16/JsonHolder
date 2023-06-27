@@ -7,6 +7,7 @@ import com.lise.models.users.UserPostBody;
 import com.lise.models.users.UserPostResponse;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -55,27 +56,10 @@ public class Patch extends BaseClass {
         assertThat(todoPatchResponse.getUserId(),is(userId));
         assertThat(todoPatchResponse.getTitle(),is(todoPatchBody.title));
         assertThat(todoPatchResponse.isCompleted(),is(todoPatchBody.completed));
-    }
 
-    //  Create User
-    public UserPostResponse createUser(UserPostBody userPostBody) {
-        UserPostResponse response = given()
-                .contentType(ContentType.JSON)
-                .body(userPostBody)
-                .when()
-                .request(Method.POST, "/users")
-                .as(UserPostResponse.class);
-        return response;
-    }
-    // create Todos
-    public TodoPostResponse createTodo(TodoPostBody body) {
-        TodoPostResponse response = given()
-                .contentType(ContentType.JSON)
-                .body(body)
-                .when()
-                .request(Method.POST, "/todos")
-                .as(TodoPostResponse.class);
-        return response;
+        Response deleteTodoResponse=deleteTodoById(todoId);
+
+        Response deleteUserResponse=deleteTodoById(userId);
     }
 
     // Patch Todos By Id

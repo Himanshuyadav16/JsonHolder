@@ -2,13 +2,14 @@ package com.lise.testCases.posts;
 
 import com.github.javafaker.Faker;
 import com.lise.BaseClass;
-import io.restassured.http.Method;
+import com.lise.models.posts.PostPostBody;
+import com.lise.models.posts.PostPostResponse;
+import com.lise.models.users.UserPostBody;
+import com.lise.models.users.UserPostResponse;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
-import org.json.JSONObject;
 import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
@@ -17,51 +18,39 @@ public class Delete extends BaseClass {
     @Test
     public void deletePostById() {
         Faker faker = new Faker();
-        String userName = faker.name().name();
-        String userEmail = faker.internet().emailAddress();
-        String userBody = "{\n" +
-                "    \"name\": \"" + userName + "\",\n" +
-                "    \"email\": \"" + userEmail + "\"\n" +
-                "  }";
-        Response userResponse = createUser(userBody);
 
-        assertThat(userResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
+        UserPostBody userPostBody = new UserPostBody();
+        userPostBody.setName(faker.name().name());
+        userPostBody.setEmail(faker.internet().emailAddress());
 
-        JSONObject postData = new JSONObject(userResponse.asString());
+        UserPostResponse userPostResponse = createUser(userPostBody);
 
-        assertThat(postData.getString("name"), is(userName));
-        assertThat(postData.getString("email"), is(userEmail));
+        assertThat(userPostResponse.getName(), is(userPostBody.name));
+        assertThat(userPostResponse.getEmail(), is(userPostBody.email));
+        assertThat(userPostResponse.getId(), notNullValue());
 
-        int userId = postData.getInt("id");
-        String postTitle = "foo";
-        String postPostsBody = "bar";
+        int userId = userPostResponse.getId();
 
-        String postBody = "{ \"userId\": \"" + userId + "\",\n" +
-                "    \"title\": \"" + postTitle + "\",\n" +
-                "    \"body\": \"" + postPostsBody + "\"\n" +
-                "  }";
+        PostPostBody postPostBody = new PostPostBody();
 
-        Response postResponse = createPost(postBody);
+        postPostBody.setTitle("foo");
+        postPostBody.setBody("bar");
+        postPostBody.setUserId(userId);
 
-        assertThat(postResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
+        PostPostResponse postPostResponse=createPost(postPostBody);
 
-        JSONObject jsonPost = new JSONObject(postResponse.asString());
-        assertThat(jsonPost.getInt("userId"), is(userId));
-        assertThat(jsonPost.getInt("id"), notNullValue());
-        assertThat(jsonPost.getString("title"), is(postTitle));
-        assertThat(jsonPost.getString("body"), is(postPostsBody));
+        assertThat(postPostResponse.getTitle(),is(postPostBody.title));
+        assertThat(postPostResponse.getBody(),is(postPostBody.body));
+        assertThat(postPostResponse.getId(),notNullValue());
+        assertThat(postPostResponse.getUserId(),is(userId));
 
-        int postId = postData.getInt("id");
+        int postId = postPostResponse.getUserId();
 
         Response  postDeleteResponse=deletePostById(postId);
         assertThat(postDeleteResponse.getStatusCode(),is(HttpStatus.SC_OK));
+
         Response userDeleteResponse=deletePostById(userId);
         assertThat(userDeleteResponse.getStatusCode(),is(HttpStatus.SC_OK));
     }
-//Delete Post By Id
-    public Response deletePostById(int id){
-        Response response=given()
-                .request(Method.DELETE,"/posts/"+id);
-        return response;
-    }
+
 }

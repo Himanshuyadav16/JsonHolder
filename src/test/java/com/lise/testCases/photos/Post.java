@@ -8,11 +8,9 @@ import com.lise.models.photos.PhotoPostBody;
 import com.lise.models.photos.PhotoPostResponse;
 import com.lise.models.users.UserPostBody;
 import com.lise.models.users.UserPostResponse;
-import io.restassured.http.ContentType;
-import io.restassured.http.Method;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
@@ -58,37 +56,14 @@ public class Post extends BaseClass {
 
         assertThat(photoPostResponse.getUrl(), is(photoPostBody.getUrl()));
         assertThat(photoPostResponse.getThumbnailUrl(), is(photoPostBody.thumbnailUrl));
+
+        int photoId=photoPostResponse.getId();
+
+        Response deletePhotoResponse=deletePhotoById(photoId);
+
+        Response deleteAlbumResponse=deletePhotoById(albumId);
+
+        Response deleteUserResponse=deletePhotoById(userId);
     }
-    //  Create User
-    public UserPostResponse createUser(UserPostBody userPostBody) {
-        UserPostResponse response = given()
-                .contentType(ContentType.JSON)
-                .body(userPostBody)
-                .when()
-                .request(Method.POST, "/users")
-                .as(UserPostResponse.class);
-        return response;
-    }
-    //Create Album
-    public AlbumPostResponse createAlbum(AlbumPostBody body) {
-        AlbumPostResponse response = given()
-                .contentType(ContentType.JSON)
-                .body(body)
-                .when()
-                .request(Method.POST, "/posts")
-                .as(AlbumPostResponse.class);
-        return response;
-    }
-    //create Photos
-    public PhotoPostResponse createPhoto(PhotoPostBody body){
-        PhotoPostResponse response=given()
-                .contentType(ContentType.JSON)
-                .body(body)
-                .when()
-                .request(Method.POST,"/photos")
-                .then()
-                .extract()
-                .as(PhotoPostResponse.class);
-        return response;
-    }
+
 }
