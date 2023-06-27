@@ -7,10 +7,10 @@ import com.lise.models.users.UserPostBody;
 import com.lise.models.users.UserPostResponse;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
@@ -58,31 +58,11 @@ public class Patch extends BaseClass {
         assertThat(postPatchResponse.getBody(),is(postPatchBody.body));
         assertThat(postPatchResponse.getUserId(),is(postPatchBody.userId));
         assertThat(postPatchResponse.getId(),is(postId));
+
+        Response postDeleteResponse=deletePostById(postId);
+
+        Response userDeleteResponse=deletePostById(userId);
     }
-
-    //  Create User
-    public UserPostResponse createUser(UserPostBody userPostBody) {
-        UserPostResponse response = given()
-                .contentType(JSON)
-                .body(userPostBody)
-                .when()
-                .request(Method.POST, "/users")
-                .as(UserPostResponse.class);
-        return response;
-    }
-
-    // Create  Posts
-    public PostPostResponse createPost(PostPostBody body) {
-        PostPostResponse response = given()
-                .contentType(JSON)
-                .body(body)
-                .when()
-                .request(Method.POST, "/posts")
-                .as(PostPostResponse.class);
-        return response;
-    }
-
-
     // patch A Posts
     public PostPatchResponse patchPostById(PostPatchBody body, int id) {
         PostPatchResponse response = given()

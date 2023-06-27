@@ -12,6 +12,7 @@ import com.lise.models.users.UserPostBody;
 import com.lise.models.users.UserPostResponse;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -80,39 +81,13 @@ public class Put extends BaseClass {
         assertThat(commentPutResponse.getEmail(),is(commentPutBody.email));
         assertThat(commentPutResponse.getBody(),is(commentPutBody.body));
 
-    }
-    //  Create User
-    public UserPostResponse createUser(UserPostBody userPostBody) {
-        UserPostResponse response = given()
-                .contentType(ContentType.JSON)
-                .body(userPostBody)
-                .when()
-                .request(Method.POST, "/users")
-                .as(UserPostResponse.class);
-        return response;
-    }
+        Response commentDeleteResponse=deleteCommentById(commentId);
 
-    // Create  Posts
-    public PostPostResponse createPost(PostPostBody body) {
-        PostPostResponse response = given()
-                .contentType(ContentType.JSON)
-                .body(body)
-                .when()
-                .request(Method.POST, "/posts")
-                .as(PostPostResponse.class);
-        return response;
-    }
+        Response  postDeleteResponse=deleteCommentById(postId);
 
-    // Comments A Post Method
-    public CommentPostResponse createComment(CommentPostBody body) {
-        CommentPostResponse response = given()
-                .contentType(ContentType.JSON)
-                .body(body)
-                .request(Method.POST, "/comments")
-                .as(CommentPostResponse.class);
-        return response;
-    }
+        Response  userDeleteResponse=deleteCommentById(userId);
 
+    }
     //Update  Comments Method
     public CommentPutResponse updateCommentbyId(CommentPutBody body, int id) {
         CommentPutResponse response = given()

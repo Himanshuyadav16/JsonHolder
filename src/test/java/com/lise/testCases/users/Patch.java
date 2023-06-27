@@ -5,6 +5,7 @@ import com.lise.BaseClass;
 import com.lise.models.users.*;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -78,16 +79,8 @@ public class Patch extends BaseClass {
         assertThat(company.getCatchPhrase(),is(company.catchPhrase));
         assertThat(company.getBs(),is(company.bs));
 
-    }
-    //  Create User
-    public UserPostResponse createUser(UserPostBody userPostBody) {
-        UserPostResponse response = given()
-                .contentType(ContentType.JSON)
-                .body(userPostBody)
-                .when()
-                .request(Method.POST, "/users")
-                .as(UserPostResponse.class);
-        return response;
+        Response userResponseDelete =deleteUserById(userId);
+
     }
 //Patch User By Id
 public UserPatchResponse patchUserById(UserPatchBody body, int id) {

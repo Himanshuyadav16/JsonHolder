@@ -10,6 +10,7 @@ import com.lise.models.users.UserPostBody;
 import com.lise.models.users.UserPostResponse;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -53,29 +54,11 @@ public class Put extends BaseClass {
         assertThat(albumPutResponse.getTitle(), is(albumPutBody.title));
         assertThat(albumPutResponse.getUserId(), is(userId));
         assertThat(albumPutResponse.getId(), notNullValue());
-    }
-    //  Create User
-    public UserPostResponse createUser(UserPostBody userPostBody) {
-        UserPostResponse response = given()
-                .contentType(ContentType.JSON)
-                .body(userPostBody)
-                .when()
-                .request(Method.POST, "/users")
-                .as(UserPostResponse.class);
-        return response;
-    }
 
-    //Create Album
-    public AlbumPostResponse createAlbum(AlbumPostBody body) {
-        AlbumPostResponse response = given()
-                .contentType(ContentType.JSON)
-                .body(body)
-                .when()
-                .request(Method.POST, "/posts")
-                .as(AlbumPostResponse.class);
-        return response;
-    }
+        Response albumDeleteResponse=deleteAlbumById(albumId);
 
+        Response userDeleteResponse=deleteAlbumById(userId);
+    }
 
     // update Album
     public AlbumPutResponse updateAlbum(AlbumPutBody body, int id) {

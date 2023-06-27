@@ -6,11 +6,9 @@ import com.lise.models.posts.PostPostBody;
 import com.lise.models.posts.PostPostResponse;
 import com.lise.models.users.UserPostBody;
 import com.lise.models.users.UserPostResponse;
-import io.restassured.http.ContentType;
-import io.restassured.http.Method;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
@@ -45,27 +43,11 @@ public class Post extends BaseClass {
         assertThat(postPostResponse.getBody(),is(postPostBody.body));
         assertThat(postPostResponse.getId(),notNullValue());
         assertThat(postPostResponse.getUserId(),is(userId));
-    }
-    //  Create User
-    public UserPostResponse createUser(UserPostBody userPostBody) {
-        UserPostResponse response = given()
-                .contentType(ContentType.JSON)
-                .body(userPostBody)
-                .when()
-                .request(Method.POST, "/users")
-                .as(UserPostResponse.class);
-        return response;
-    }
 
-    // Create  Posts
-    public PostPostResponse createPost(PostPostBody body) {
-        PostPostResponse response = given()
-                .contentType(ContentType.JSON)
-                .body(body)
-                .when()
-                .request(Method.POST, "/posts")
-                .as(PostPostResponse.class);
-        return response;
-    }
+        int postId=postPostResponse.getId();
 
+        Response postDeleteResponse=deletePostById(postId);
+
+        Response userDeleteResponse=deletePostById(userId);
+    }
 }

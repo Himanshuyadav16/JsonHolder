@@ -2,67 +2,53 @@ package com.lise.testCases.todos;
 
 import com.github.javafaker.Faker;
 import com.lise.BaseClass;
-import io.restassured.http.Method;
+import com.lise.models.todos.TodoPostBody;
+import com.lise.models.todos.TodoPostResponse;
+import com.lise.models.users.UserPostBody;
+import com.lise.models.users.UserPostResponse;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
-import org.json.JSONObject;
 import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
 public class Delete extends BaseClass {
-@Test
-    public void deleteTodoById(){
-    Faker faker = new Faker();
-    String userName = faker.name().name();
-    String userEmail = faker.internet().emailAddress();
-    String userBody = " {\n" +
-            "            \"name\": \"" + userName + "\",\n" +
-            "        \"email\": \"" + userEmail + "\"\n" +
-            "    }";
-    Response userResponse = createUser(userBody);
+    @Test
+    public void deleteTodoById() {
+        Faker faker = new Faker();
+        UserPostBody userPostBody = new UserPostBody();
+        userPostBody.setName(faker.name().name());
+        userPostBody.setEmail(faker.internet().emailAddress());
 
-    assertThat(userResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
+        UserPostResponse userPostResponse = createUser(userPostBody);
 
-    JSONObject jsonObjectUser = new JSONObject(userResponse.asString());
+        assertThat(userPostResponse.getName(), is(userPostBody.name));
+        assertThat(userPostResponse.getEmail(), is(userPostBody.email));
+        assertThat(userPostResponse.getId(), notNullValue());
 
-    assertThat(jsonObjectUser.getString("name"), is(userName));
-    assertThat(jsonObjectUser.getString("email"), is(userEmail));
-    assertThat(jsonObjectUser.getInt("id"), notNullValue());
+        int userId = userPostResponse.getId();
 
-    int userId = jsonObjectUser.getInt("id");
+        TodoPostBody todoPostBody = new TodoPostBody();
+        todoPostBody.setUserId(userId);
+        todoPostBody.setTitle("enderit");
+        todoPostBody.setCompleted(false);
 
-    String todoTitle = "enderit";
-    boolean todoCompleted =false ;
-    String todoBody = "{ \n" +
-            "    \"userId\":" + userId + ",\n" +
-            "    \"title\": \"" + todoTitle + "\",\n" +
-            "    \"completed\": \"" + todoCompleted + "\"\n" +
-            "  }";
-    Response todoResponse = createTodo(todoBody);
+        TodoPostResponse todoPostResponse = createTodo(todoPostBody);
 
-    JSONObject jsonObjectTodo = new JSONObject(todoResponse.asString());
+        assertThat(todoPostResponse.getId(), notNullValue());
+        assertThat(todoPostResponse.getTitle(), is(todoPostBody.title));
+        assertThat(todoPostResponse.getUserId(), is(userId));
+        assertThat(todoPostResponse.isCompleted(), is(todoPostBody.completed));
 
-    assertThat(jsonObjectTodo.getInt("userId"), is(userId));
-    assertThat(jsonObjectTodo.getInt("id"), notNullValue());
-    assertThat(jsonObjectTodo.getString("title"), is(todoTitle));
-    assertThat(jsonObjectTodo.getBoolean("completed"), is(todoCompleted));
+        int todoId = todoPostResponse.getId();
 
-    int todoId=jsonObjectTodo.getInt("id");
+        Response deleteTodoResponse = deleteTodoById(todoId);
+        assertThat(deleteTodoResponse.getStatusCode(), is(HttpStatus.SC_OK));
 
-    Response deleteTodoResponse=deleteTodoById(todoId);
-    assertThat(deleteTodoResponse.getStatusCode(),is(HttpStatus.SC_OK));
-
-  Response deleteUserResponse=deleteTodoById(userId);
-    assertThat(deleteUserResponse.getStatusCode(),is(HttpStatus.SC_OK));
-}
-//delete todos By Id
-    public Response deleteTodoById(int id){
-    Response response=given()
-            .request(Method.DELETE,"/todos/"+id);
-    return response;
+        Response deleteUserResponse = deleteTodoById(userId);
+        assertThat(deleteUserResponse.getStatusCode(), is(HttpStatus.SC_OK));
     }
+
 }

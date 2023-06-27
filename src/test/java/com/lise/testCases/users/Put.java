@@ -8,6 +8,7 @@ import com.lise.models.users.UserPutBody;
 import com.lise.models.users.UserPutResponse;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -38,18 +39,11 @@ public class Put extends BaseClass {
 
          assertThat(userPutResponse.getName(),is(userPutBody.name));
          assertThat(userPutResponse.getEmail(),is(userPutBody.email));
-         assertThat(userPutResponse.getId(),notNullValue());
-    }
+         assertThat(userPutResponse.getId(),is(userId));
 
-    //  Create User
-    public UserPostResponse createUser(UserPostBody userPostBody) {
-        UserPostResponse response = given()
-                .contentType(ContentType.JSON)
-                .body(userPostBody)
-                .when()
-                .request(Method.POST, "/users")
-                .as(UserPostResponse.class);
-        return response;
+        int userPutId=userPostResponse.getId();
+
+        Response userResponseDelete =deleteUserById(userPutId);
     }
 
     //Put User By Id

@@ -8,11 +8,9 @@ import com.lise.models.posts.PostPostBody;
 import com.lise.models.posts.PostPostResponse;
 import com.lise.models.users.UserPostBody;
 import com.lise.models.users.UserPostResponse;
-import io.restassured.http.ContentType;
-import io.restassured.http.Method;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
@@ -62,37 +60,12 @@ public class Post extends BaseClass {
         assertThat(commentPostResponse.getEmail(),is(commentPostBody.email));
         assertThat(commentPostResponse.getBody(),is(commentPostBody.body));
 
-    }
+        int commentId = commentPostResponse.getId();
 
-    //  Create User
-    public UserPostResponse createUser(UserPostBody userPostBody) {
-        UserPostResponse response = given()
-                .contentType(ContentType.JSON)
-                .body(userPostBody)
-                .when()
-                .request(Method.POST, "/users")
-                .as(UserPostResponse.class);
-        return response;
-    }
+        Response commentDeleteResponse=deleteCommentById(commentId);
 
-    // Create  Posts
-    public PostPostResponse createPost(PostPostBody body) {
-        PostPostResponse response = given()
-                .contentType(ContentType.JSON)
-                .body(body)
-                .when()
-                .request(Method.POST, "/posts")
-                .as(PostPostResponse.class);
-        return response;
-    }
+        Response  postDeleteResponse=deleteCommentById(postId);
 
-    // Comments A Post Method
-    public CommentPostResponse createComment(CommentPostBody body) {
-        CommentPostResponse response = given()
-                .contentType(ContentType.JSON)
-                .body(body)
-                .request(Method.POST, "/comments")
-                .as(CommentPostResponse.class);
-        return response;
+        Response  userDeleteResponse=deleteCommentById(userId);
     }
 }

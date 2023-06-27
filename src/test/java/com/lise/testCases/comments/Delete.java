@@ -2,13 +2,16 @@ package com.lise.testCases.comments;
 
 import com.github.javafaker.Faker;
 import com.lise.BaseClass;
-import io.restassured.http.Method;
+import com.lise.models.comments.CommentPostBody;
+import com.lise.models.comments.CommentPostResponse;
+import com.lise.models.posts.PostPostBody;
+import com.lise.models.posts.PostPostResponse;
+import com.lise.models.users.UserPostBody;
+import com.lise.models.users.UserPostResponse;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
-import org.json.JSONObject;
 import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
@@ -17,67 +20,48 @@ public class Delete extends BaseClass {
  @Test
  public void deleteCommentsById(){
      Faker faker = new Faker();
-     String userName = faker.name().name();
-     String userEmail = faker.internet().emailAddress();
-     String userBody = "{\n" +
-             "    \"name\": \"" + userName + "\",\n" +
-             "    \"email\": \"" + userEmail + "\"\n" +
-             "  }";
-     Response userResponse = createUser(userBody);
 
-     assertThat(userResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
+     UserPostBody userPostBody = new UserPostBody();
+     userPostBody.setName(faker.name().name());
+     userPostBody.setEmail(faker.internet().emailAddress());
 
-     JSONObject postData = new JSONObject(userResponse.asString());
+     UserPostResponse userPostResponse = createUser(userPostBody);
 
-     assertThat(postData.getString("name"), is(userName));
-     assertThat(postData.getString("email"), is(userEmail));
+     assertThat(userPostResponse.getName(), is(userPostBody.name));
+     assertThat(userPostResponse.getEmail(), is(userPostBody.email));
+     assertThat(userPostResponse.getId(), notNullValue());
 
-     int userId = postData.getInt("id");
-     String postTitle = "foo";
-     String postPostsBody = "bar";
+     int userId = userPostResponse.getId();
 
-     String postBody = "{ \"userId\": \"" + userId + "\",\n" +
-             "    \"title\": \"" + postTitle + "\",\n" +
-             "    \"body\": \"" + postPostsBody + "\"\n" +
-             "  }";
+     PostPostBody postPostBody = new PostPostBody();
 
-     Response postResponse = createPost(postBody);
+     postPostBody.setTitle("foo");
+     postPostBody.setBody("bar");
+     postPostBody.setUserId(userId);
 
-     assertThat(postResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
+     PostPostResponse postPostResponse=createPost(postPostBody);
 
-     JSONObject jsonPost = new JSONObject(postResponse.asString());
+     assertThat(postPostResponse.getTitle(),is(postPostBody.title));
+     assertThat(postPostResponse.getBody(),is(postPostBody.body));
+     assertThat(postPostResponse.getId(),notNullValue());
+     assertThat(postPostResponse.getUserId(),is(userId));
+     int postId = postPostResponse.getId();
 
-     assertThat(jsonPost.getInt("userId"), is(userId));
-     assertThat(jsonPost.getInt("id"), notNullValue());
-     assertThat(jsonPost.getString("title"), is(postTitle));
-     assertThat(jsonPost.getString("body"), is(postPostsBody));
+     CommentPostBody commentPostBody=new CommentPostBody();
+     commentPostBody.setPostId(postId);
+     commentPostBody.setName(faker.name().name());
+     commentPostBody.setEmail(faker.internet().emailAddress());
+     commentPostBody.setBody("laudantium enim quasi est quidem magnam voluptate ipsam eosntempora quo");
 
-     int postId = jsonPost.getInt("id");
+     CommentPostResponse commentPostResponse=createComment(commentPostBody);
 
-     String commentName = faker.name().name();
-     String commentEmail = faker.internet().emailAddress();
-     String commentPostBody = "laudantium enim quasi est quidem magnam voluptate ipsam eosntempora quo";
+     assertThat(commentPostResponse.getId(),notNullValue());
+     assertThat(commentPostResponse.getPostId(),is(commentPostBody.postId));
+     assertThat(commentPostResponse.getName(),is(commentPostBody.name));
+     assertThat(commentPostResponse.getEmail(),is(commentPostBody.email));
+     assertThat(commentPostResponse.getBody(),is(commentPostBody.body));
 
-     String commentBody = "{\n" +
-             "    \"postId\": " + postId + ",\n" +
-             "    \"name\": \"" + commentName + "\",\n" +
-             "    \"email\": \"" + commentEmail + "\",\n" +
-             "    \"body\": \"" + commentPostBody + "\"\n" +
-             "  }";
-
-     Response commentResponse = createComment(commentBody);
-
-     assertThat(commentResponse.getStatusCode(), is(HttpStatus.SC_CREATED));
-
-     JSONObject jsonObjectComment = new JSONObject(commentResponse.asString());
-
-     assertThat(jsonObjectComment.getInt("id"), notNullValue());
-     assertThat(jsonObjectComment.getInt("postId"), is(postId));
-     assertThat(jsonObjectComment.getString("name"), is(commentName));
-     assertThat(jsonObjectComment.getString("email"), is(commentEmail));
-     assertThat(jsonObjectComment.getString("body"), is(commentPostBody));
-
-     int commentId = jsonObjectComment.getInt("id");
+     int commentId = commentPostResponse.getId();
 
      Response  commentDeleteResponse=deleteCommentById(commentId);
      assertThat(commentDeleteResponse.getStatusCode(),is(HttpStatus.SC_OK));
@@ -88,10 +72,5 @@ public class Delete extends BaseClass {
      Response  userDeleteResponse=deleteCommentById(userId);
      assertThat(userDeleteResponse.getStatusCode(),is(HttpStatus.SC_OK));
  }
- //Delete A Comments
-    public Response deleteCommentById( int id){
-     Response response=given()
-             .request(Method.DELETE,"/comments/"+id);
-             return  response;
-    }
+
 }

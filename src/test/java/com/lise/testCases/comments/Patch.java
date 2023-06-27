@@ -9,6 +9,7 @@ import com.lise.models.users.UserPostBody;
 import com.lise.models.users.UserPostResponse;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -76,39 +77,14 @@ public class Patch extends BaseClass {
         assertThat(commentPatchResponse.getName(),is(commentPatchBody.name));
         assertThat(commentPatchResponse.getEmail(),is(commentPatchBody.email));
         assertThat(commentPatchResponse.getBody(),is(commentPatchBody.body));
-    }
-    //  Create User
-    public UserPostResponse createUser(UserPostBody userPostBody) {
-        UserPostResponse response = given()
-                .contentType(ContentType.JSON)
-                .body(userPostBody)
-                .when()
-                .request(Method.POST, "/users")
-                .as(UserPostResponse.class);
-        return response;
-    }
 
-    // Create  Posts
-    public PostPostResponse createPost(PostPostBody body) {
-        PostPostResponse response = given()
-                .contentType(ContentType.JSON)
-                .body(body)
-                .when()
-                .request(Method.POST, "/posts")
-                .as(PostPostResponse.class);
-        return response;
-    }
+        Response commentDeleteResponse=deleteCommentById(commentId);
 
-    // Comments  Post Method
-    public CommentPostResponse createComment(CommentPostBody body) {
-        CommentPostResponse response = given()
-                .contentType(ContentType.JSON)
-                .body(body)
-                .request(Method.POST, "/comments")
-                .as(CommentPostResponse.class);
-        return response;
-    }
+        Response  postDeleteResponse=deleteCommentById(postId);
 
+        Response  userDeleteResponse=deleteCommentById(userId);
+
+    }
     //patch   Comments
     public CommentPatchResponse PatchCommentById(CommentPatchBody body, int id) {
         CommentPatchResponse response = given()
